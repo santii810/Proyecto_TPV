@@ -15,10 +15,14 @@ namespace Proyecto_TPV.Model.DB
         [Required]
         public string NickUsuario { get; set; }
         [Required]
+        public string password { get; set; }
+        [Required]
         public string NombreUsuario { get; set; }
         public string ApellidosUsuario { get; set; }
 
         public virtual ICollection<Sesion> sesiones { get; set; }
+
+        
 
         public Usuario() {
             

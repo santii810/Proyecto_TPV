@@ -5,8 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_TPV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="512" Width="569">
+
+
+    <Window.Resources>
+        <Style x:Key="botones" TargetType="{x:Type Button}" >
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="1"/>
+
+            <Setter Property="Background">
+                <Setter.Value>
+
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FF1EB464"/>
+                        <GradientStop Color="#FF168449" Offset="0.846"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
     <Grid>
-        
+            <WrapPanel HorizontalAlignment="Left" Name="autenticationPanel" Height="300" Margin="200,60,0,0" Width="186" Visibility="Collapsed">
+                <TextBox x:Name="textBoxCodigo" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
+                <Button x:Name="buttonAutenticado1" Content="1" Style="{StaticResource botones}" Click="buttonAutenticado1_Click"/>
+                <Button x:Name="buttonAutenticado2" Content="2" Style="{StaticResource botones}" Click="buttonAutenticado2_Click"/>
+                <Button x:Name="buttonAutenticado3" Content="3" Style="{StaticResource botones}" Click="buttonAutenticado3_Click"/>
+                <Button x:Name="buttonAutenticado4" Content="4" Style="{StaticResource botones}" Click="buttonAutenticado4_Click"/>
+                <Button x:Name="buttonAutenticado5" Content="5" Style="{StaticResource botones}" Click="buttonAutenticado5_Click"/>
+                <Button x:Name="buttonAutenticado6" Content="6" Style="{StaticResource botones}" Click="buttonAutenticado6_Click"/>
+                <Button x:Name="buttonAutenticado7" Content="7" Style="{StaticResource botones}" Click="buttonAutenticado7_Click"/>
+                <Button x:Name="buttonAutenticado8" Content="8" Style="{StaticResource botones}" Click="buttonAutenticado8_Click"/>
+                <Button x:Name="buttonAutenticado9" Content="9" Style="{StaticResource botones}" Click="buttonAutenticado9_Click"/>
+                <Button x:Name="buttonAutenticadoCancel" Content="C" Style="{StaticResource botones}" Click="buttonAutenticadoCancel_Click"/>
+                <Button x:Name="buttonAutenticado0" Content="0" Style="{StaticResource botones}" Click="buttonAutenticado0_Click"/>
+                <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botones}" Click="buttonAutenticadoOk_Click"/>
+
+
+
+
+
+
+            </WrapPanel>
+        <StackPanel HorizontalAlignment="Left" Height="481" VerticalAlignment="Top" Width="551">
+
+        </StackPanel>
     </Grid>
 </Window>
