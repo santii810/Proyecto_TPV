@@ -41,7 +41,7 @@ namespace Proyecto_TPV
             {
                 case COD_AUTENTICADO_OK:
                     autenticationPanel.Visibility = Visibility.Hidden;
-
+                    panelPrincipal.Visibility = Visibility.Visible;
                     break;
                 default:
                     break;
@@ -133,6 +133,8 @@ namespace Proyecto_TPV
             }
         }
         #endregion
+
+
     }
     #endregion
 }

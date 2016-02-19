@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_TPV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="512" Width="569">
+        Title="MainWindow" Height="600" Width="800">
 
 
     <Window.Resources>
@@ -19,7 +19,6 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Margin" Value="1"/>
-
             <Setter Property="Background">
                 <Setter.Value>
 
@@ -31,32 +30,54 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- textos-->
+        <Style x:Key="textoNegrita" TargetType="{x:Type Label}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
     </Window.Resources>
 
 
     <Grid>
-            <WrapPanel HorizontalAlignment="Left" Name="autenticationPanel" Height="300" Margin="200,60,0,0" Width="186" Visibility="Collapsed">
-                <TextBox x:Name="textBoxCodigo" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
-                <Button x:Name="buttonAutenticado1" Content="1" Style="{StaticResource botones}" Click="buttonAutenticado1_Click"/>
-                <Button x:Name="buttonAutenticado2" Content="2" Style="{StaticResource botones}" Click="buttonAutenticado2_Click"/>
-                <Button x:Name="buttonAutenticado3" Content="3" Style="{StaticResource botones}" Click="buttonAutenticado3_Click"/>
-                <Button x:Name="buttonAutenticado4" Content="4" Style="{StaticResource botones}" Click="buttonAutenticado4_Click"/>
-                <Button x:Name="buttonAutenticado5" Content="5" Style="{StaticResource botones}" Click="buttonAutenticado5_Click"/>
-                <Button x:Name="buttonAutenticado6" Content="6" Style="{StaticResource botones}" Click="buttonAutenticado6_Click"/>
-                <Button x:Name="buttonAutenticado7" Content="7" Style="{StaticResource botones}" Click="buttonAutenticado7_Click"/>
-                <Button x:Name="buttonAutenticado8" Content="8" Style="{StaticResource botones}" Click="buttonAutenticado8_Click"/>
-                <Button x:Name="buttonAutenticado9" Content="9" Style="{StaticResource botones}" Click="buttonAutenticado9_Click"/>
-                <Button x:Name="buttonAutenticadoCancel" Content="C" Style="{StaticResource botones}" Click="buttonAutenticadoCancel_Click"/>
-                <Button x:Name="buttonAutenticado0" Content="0" Style="{StaticResource botones}" Click="buttonAutenticado0_Click"/>
-                <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botones}" Click="buttonAutenticadoOk_Click"/>
+        <!--#region Numeros autenticado -->
+        <WrapPanel HorizontalAlignment="Center" Name="autenticationPanel" Height="300" Margin="0,-50,0,0" Width="186" Visibility="Collapsed">
+            <TextBox x:Name="textBoxCodigo" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
+            <Button x:Name="buttonAutenticado1" Content="1" Style="{StaticResource botones}" Click="buttonAutenticado1_Click"/>
+            <Button x:Name="buttonAutenticado2" Content="2" Style="{StaticResource botones}" Click="buttonAutenticado2_Click"/>
+            <Button x:Name="buttonAutenticado3" Content="3" Style="{StaticResource botones}" Click="buttonAutenticado3_Click"/>
+            <Button x:Name="buttonAutenticado4" Content="4" Style="{StaticResource botones}" Click="buttonAutenticado4_Click"/>
+            <Button x:Name="buttonAutenticado5" Content="5" Style="{StaticResource botones}" Click="buttonAutenticado5_Click"/>
+            <Button x:Name="buttonAutenticado6" Content="6" Style="{StaticResource botones}" Click="buttonAutenticado6_Click"/>
+            <Button x:Name="buttonAutenticado7" Content="7" Style="{StaticResource botones}" Click="buttonAutenticado7_Click"/>
+            <Button x:Name="buttonAutenticado8" Content="8" Style="{StaticResource botones}" Click="buttonAutenticado8_Click"/>
+            <Button x:Name="buttonAutenticado9" Content="9" Style="{StaticResource botones}" Click="buttonAutenticado9_Click"/>
+            <Button x:Name="buttonAutenticadoCancel" Content="C" Style="{StaticResource botones}" Click="buttonAutenticadoCancel_Click"/>
+            <Button x:Name="buttonAutenticado0" Content="0" Style="{StaticResource botones}" Click="buttonAutenticado0_Click"/>
+            <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botones}" Click="buttonAutenticadoOk_Click"/>
+        </WrapPanel>
+        <!--#endregion-->
+        <StackPanel Name="panelPrincipal" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800" Visibility="Visible" Margin="0,0,0,0">
+            <!--#region Panel botones-->
+            <WrapPanel Name="menuBar" Background="Bisque"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="100">
+                <Border BorderBrush="Black" BorderThickness="5">
+                    <WrapPanel Name="botonesMenuBar">
+                        <!-- boton caja-->
+                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5">
+                            <Image Source="Iconos/caja64.png"></Image>
+                            <Label  Content="Caja" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                        <!-- boton almacen-->
+                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                            <Image Source="Iconos/almacen64.png"></Image>
+                            <Label  Content="Almacen" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
 
-
-
-
-
-
+                    </WrapPanel>
+                </Border>
             </WrapPanel>
-        <StackPanel HorizontalAlignment="Left" Height="481" VerticalAlignment="Top" Width="551">
+            <!--#endregion-->
+
 
         </StackPanel>
     </Grid>
