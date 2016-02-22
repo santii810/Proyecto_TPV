@@ -36,6 +36,16 @@
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Verdana"/>
         </Style>
+        <Style x:Key="botonLogOut" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="Background" Value="Bisque"/>
+            <Setter Property="Border.CornerRadius" Value="1"/>
+
+
+
+        </Style>
     </Window.Resources>
 
 
@@ -57,15 +67,15 @@
             <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botones}" Click="buttonAutenticadoOk_Click"/>
         </WrapPanel>
         <!--#endregion-->
-        <StackPanel Name="panelPrincipal" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="800" Visibility="Visible" Margin="0,0,0,0">
+        <DockPanel Name="panelPrincipal"  HorizontalAlignment="Left"  VerticalAlignment="Top" Visibility="Visible" Margin="0,0,0,0">
             <!--#region Panel botones-->
-            <WrapPanel Name="menuBar" Background="Bisque"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="100">
+            <WrapPanel DockPanel.Dock="Left" Name="menuBar" Background="Bisque"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="100">
                 <Border BorderBrush="Black" BorderThickness="5">
-                    <WrapPanel Name="botonesMenuBar">
+                    <StackPanel Orientation="Vertical" Name="botonesMenuBar">
                         <!-- boton caja-->
-                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5">
-                            <Image Source="Iconos/caja64.png"></Image>
-                            <Label  Content="Caja" Style="{StaticResource textoNegrita}"  />
+                        <StackPanel  Width="80"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5">
+                            <Image Source="Iconos/caja64.png" MouseLeftButtonUp="Caja_MouseLeftButtonUp"></Image>
+                            <Label  Content="Caja" MouseLeftButtonUp="Caja_MouseLeftButtonUp" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
                         <!-- boton almacen-->
                         <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
@@ -73,12 +83,23 @@
                             <Label  Content="Almacen" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
 
-                    </WrapPanel>
+                    </StackPanel>
                 </Border>
             </WrapPanel>
             <!--#endregion-->
-
-
-        </StackPanel>
+            <StackPanel Orientation="Horizontal" Name="panelUsuario" Height="30"  DockPanel.Dock="Top" VerticalAlignment="Top">
+                <Label Content="Usuario: " Style="{StaticResource textoNegrita}" />
+                <Label Content="" Name="labelNombreUsuario" Style="{StaticResource textoNegrita}"/>
+                <Button Content="Log Out" Style="{StaticResource botonLogOut}"></Button>
+            </StackPanel>
+            
+            <Border CornerRadius="5">
+                
+            <StackPanel Background="Aquamarine">
+                
+            </StackPanel>
+            </Border>
+         
+        </DockPanel >
     </Grid>
 </Window>

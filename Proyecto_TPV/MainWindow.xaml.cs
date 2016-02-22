@@ -22,11 +22,13 @@ namespace Proyecto_TPV
     {
         string strCodigo = "";
         const int COD_AUTENTICADO_OK = 1;
+        const int COD_ESTADO_INICIAL = 2;
+        const int COD_PANEL_CAJA = 3;
 
         public MainWindow()
         {
             InitializeComponent();
-            autenticationPanel.Visibility = Visibility.Visible;
+            updateIU(COD_ESTADO_INICIAL);
 
         }
         #region Metodos privados
@@ -39,8 +41,19 @@ namespace Proyecto_TPV
         {
             switch (codCambio)
             {
+                case COD_ESTADO_INICIAL:
+                    autenticationPanel.Visibility = Visibility.Visible;
+                    panelPrincipal.Visibility = Visibility.Hidden;
+                    panelCaja.Visibility = Visibility.Hidden;
+                    break;
                 case COD_AUTENTICADO_OK:
                     autenticationPanel.Visibility = Visibility.Hidden;
+                    panelCaja.Visibility = Visibility.Hidden;
+                    panelPrincipal.Visibility = Visibility.Visible;
+                    break;
+                case COD_PANEL_CAJA:
+                    autenticationPanel.Visibility = Visibility.Hidden;
+                    panelCaja.Visibility = Visibility.Visible;
                     panelPrincipal.Visibility = Visibility.Visible;
                     break;
                 default:
@@ -132,9 +145,13 @@ namespace Proyecto_TPV
 
             }
         }
+
         #endregion
 
-
+        private void Caja_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            updateIU(COD_PANEL_CAJA);
+        }
     }
     #endregion
 }
