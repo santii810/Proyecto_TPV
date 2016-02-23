@@ -9,7 +9,8 @@
 
 
     <Window.Resources>
-        <Style x:Key="botones" TargetType="{x:Type Button}" >
+        <!--#region  Estilo botones logIn-->
+        <Style x:Key="botoneslogIn" TargetType="{x:Type Button}" >
             <Setter Property="Width" Value="60"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="FontSize" Value="40"/>
@@ -30,12 +31,32 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- textos-->
-        <Style x:Key="textoNegrita" TargetType="{x:Type Label}">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+        <!--#endregion-->
+
+        <!--#region estilo botones caja-->
+        <Style x:Key="botonesCaja" TargetType="{x:Type Button}" >
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="40"/>
             <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                     
+                        <GradientStop Color="#FFEEE30E" Offset="0.846"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
+        <!--#endregion-->
+
+        <!--#region  estilo boton logout-->
         <Style x:Key="botonLogOut" TargetType="{x:Type Button}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -44,8 +65,17 @@
             <Setter Property="Border.CornerRadius" Value="1"/>
 
 
-
         </Style>
+        <!--#endregion-->
+
+        <!--#region estilo textos-->
+        <Style x:Key="textoNegrita" TargetType="{x:Type Label}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+        </Style>
+        <!--#endregion-->
+
     </Window.Resources>
 
 
@@ -53,18 +83,18 @@
         <!--#region Numeros autenticado -->
         <WrapPanel HorizontalAlignment="Center" Name="autenticationPanel" Height="300" Margin="0,-50,0,0" Width="186" Visibility="Collapsed">
             <TextBox x:Name="textBoxCodigo" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
-            <Button x:Name="buttonAutenticado1" Content="1" Style="{StaticResource botones}" Click="buttonAutenticado1_Click"/>
-            <Button x:Name="buttonAutenticado2" Content="2" Style="{StaticResource botones}" Click="buttonAutenticado2_Click"/>
-            <Button x:Name="buttonAutenticado3" Content="3" Style="{StaticResource botones}" Click="buttonAutenticado3_Click"/>
-            <Button x:Name="buttonAutenticado4" Content="4" Style="{StaticResource botones}" Click="buttonAutenticado4_Click"/>
-            <Button x:Name="buttonAutenticado5" Content="5" Style="{StaticResource botones}" Click="buttonAutenticado5_Click"/>
-            <Button x:Name="buttonAutenticado6" Content="6" Style="{StaticResource botones}" Click="buttonAutenticado6_Click"/>
-            <Button x:Name="buttonAutenticado7" Content="7" Style="{StaticResource botones}" Click="buttonAutenticado7_Click"/>
-            <Button x:Name="buttonAutenticado8" Content="8" Style="{StaticResource botones}" Click="buttonAutenticado8_Click"/>
-            <Button x:Name="buttonAutenticado9" Content="9" Style="{StaticResource botones}" Click="buttonAutenticado9_Click"/>
-            <Button x:Name="buttonAutenticadoCancel" Content="C" Style="{StaticResource botones}" Click="buttonAutenticadoCancel_Click"/>
-            <Button x:Name="buttonAutenticado0" Content="0" Style="{StaticResource botones}" Click="buttonAutenticado0_Click"/>
-            <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botones}" Click="buttonAutenticadoOk_Click"/>
+            <Button x:Name="buttonAutenticado1" Content="1" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado1_Click"/>
+            <Button x:Name="buttonAutenticado2" Content="2" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado2_Click"/>
+            <Button x:Name="buttonAutenticado3" Content="3" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado3_Click"/>
+            <Button x:Name="buttonAutenticado4" Content="4" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado4_Click"/>
+            <Button x:Name="buttonAutenticado5" Content="5" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado5_Click"/>
+            <Button x:Name="buttonAutenticado6" Content="6" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado6_Click"/>
+            <Button x:Name="buttonAutenticado7" Content="7" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado7_Click"/>
+            <Button x:Name="buttonAutenticado8" Content="8" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado8_Click"/>
+            <Button x:Name="buttonAutenticado9" Content="9" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado9_Click"/>
+            <Button x:Name="buttonAutenticadoCancel" Content="C" Style="{StaticResource botoneslogIn}" Click="buttonAutenticadoCancel_Click"/>
+            <Button x:Name="buttonAutenticado0" Content="0" Style="{StaticResource botoneslogIn}" Click="buttonAutenticado0_Click"/>
+            <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botoneslogIn}" Click="buttonAutenticadoOk_Click"/>
         </WrapPanel>
         <!--#endregion-->
         <DockPanel Name="panelPrincipal"  HorizontalAlignment="Left"  VerticalAlignment="Top" Visibility="Visible" Margin="0,0,0,0">
@@ -92,13 +122,30 @@
                 <Label Content="" Name="labelNombreUsuario" Style="{StaticResource textoNegrita}"/>
                 <Button Content="Log Out" Style="{StaticResource botonLogOut}"></Button>
             </StackPanel>
-            
-            <Border CornerRadius="5">
-                
-            <StackPanel Background="Aquamarine">
-                
-            </StackPanel>
-            </Border>
+                <StackPanel Name="panelCaja"  Background="Aquamarine" Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Name="panelCajaIzquierda">
+                        <DataGrid Name="listaTicket"/>
+                        <!--#region numeros caja-->
+                        <WrapPanel HorizontalAlignment="Center" Name="panelTecladoCaja" Height="300" Margin="0,-50,0,0" Width="186">
+                            <TextBox x:Name="textBoxTeclado" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
+                            <Button x:Name="buttonCaja1" Content="1" Style="{StaticResource botonesCaja}" Click="buttonCaja1_Click"/>
+                            <Button x:Name="buttonCaja2" Content="2" Style="{StaticResource botonesCaja}" Click="buttonCaja2_Click"/>
+                            <Button x:Name="buttonCaja3" Content="3" Style="{StaticResource botonesCaja}" Click="buttonCaja3_Click"/>
+                            <Button x:Name="buttonCaja4" Content="4" Style="{StaticResource botonesCaja}" Click="buttonCaja4_Click"/>
+                            <Button x:Name="buttonCaja5" Content="5" Style="{StaticResource botonesCaja}" Click="buttonCaja5_Click"/>
+                            <Button x:Name="buttonCaja6" Content="6" Style="{StaticResource botonesCaja}" Click="buttonCaja6_Click"/>
+                            <Button x:Name="buttonCaja7" Content="7" Style="{StaticResource botonesCaja}" Click="buttonCaja7_Click"/>
+                            <Button x:Name="buttonCaja8" Content="8" Style="{StaticResource botonesCaja}" Click="buttonCaja8_Click"/>
+                            <Button x:Name="buttonCaja9" Content="9" Style="{StaticResource botonesCaja}" Click="buttonCaja9_Click"/>
+                            <Button x:Name="buttonCajaCancel" Content="C" Style="{StaticResource botonesCaja}" Click="buttonCajaCancel_Click"/>
+                            <Button x:Name="buttonCaja0" Content="0" Style="{StaticResource botonesCaja}" Click="buttonCaja0_Click"/>
+                            <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
+                        </WrapPanel>
+                        <!--#endregion-->
+                    </StackPanel>
+                <WrapPanel Name="panelProductos">
+                </WrapPanel>
+                </StackPanel>
          
         </DockPanel >
     </Grid>

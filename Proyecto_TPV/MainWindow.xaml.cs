@@ -43,16 +43,16 @@ namespace Proyecto_TPV
             {
                 case COD_ESTADO_INICIAL:
                     autenticationPanel.Visibility = Visibility.Visible;
-                    panelPrincipal.Visibility = Visibility.Hidden;
-                    panelCaja.Visibility = Visibility.Hidden;
+                    panelPrincipal.Visibility = Visibility.Collapsed;
+                    panelCaja.Visibility = Visibility.Collapsed;
                     break;
                 case COD_AUTENTICADO_OK:
-                    autenticationPanel.Visibility = Visibility.Hidden;
-                    panelCaja.Visibility = Visibility.Hidden;
+                    autenticationPanel.Visibility = Visibility.Collapsed;
+                    panelCaja.Visibility = Visibility.Collapsed;
                     panelPrincipal.Visibility = Visibility.Visible;
                     break;
                 case COD_PANEL_CAJA:
-                    autenticationPanel.Visibility = Visibility.Hidden;
+                    autenticationPanel.Visibility = Visibility.Collapsed;
                     panelCaja.Visibility = Visibility.Visible;
                     panelPrincipal.Visibility = Visibility.Visible;
                     break;
@@ -64,7 +64,7 @@ namespace Proyecto_TPV
 
 
         #region Listeners
-        #region Listener numeros
+        #region Listener numeros autenticado
 
 
         private void buttonAutenticado1_Click(object sender, RoutedEventArgs e)
@@ -146,6 +146,69 @@ namespace Proyecto_TPV
             }
         }
 
+        #endregion
+
+        #region Listeners numeros caja
+        private void buttonCaja1_Click(object sender, RoutedEventArgs e)
+        {
+   
+        }
+
+        private void buttonCaja2_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void buttonCaja3_Click(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+
+        private void buttonCaja4_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCaja5_Click(object sender, RoutedEventArgs e)
+        {
+ 
+        }
+
+        private void buttonCaja6_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCaja7_Click(object sender, RoutedEventArgs e)
+        {
+   
+        }
+
+        private void buttonCaja8_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCaja9_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCaja0_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCajaCancel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonCajaOk_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         private void Caja_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
