@@ -48,8 +48,7 @@
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="1"/>
-                     
-                        <GradientStop Color="#FFEEE30E" Offset="0.846"/>
+                        <GradientStop Color="#FFE4C4" Offset="0.846"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -144,6 +143,11 @@
                         <!--#endregion-->
                     </StackPanel>
                 <WrapPanel Name="panelProductos">
+                    <Image Name="imagenCocacola" Source="Iconos\Productos\cocacola.jpg" Width="100" Height="100"></Image>
+                    <Image Name="imagenCocacolaL" Source="Iconos\Productos\cocacolaL.jpg" Width="100" Height="100"></Image>
+                    <Image Name="imagenCocacolaL0" Source="Iconos\Productos\cocacola0.jpg" Width="100" Height="100"></Image>
+                    <Image Name="imagenKasN" Source="Iconos\Productos\kasN.jpg" Width="100" Height="100"></Image>
+                    <Image Name="imagenKasL" Source="Iconos\Productos\kasL.jpg" Width="100" Height="100"></Image>
                 </WrapPanel>
                 </StackPanel>
          
