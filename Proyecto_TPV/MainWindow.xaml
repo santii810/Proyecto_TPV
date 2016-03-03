@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_TPV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="800" ResizeMode="NoResize">
 
 
     <Window.Resources>
@@ -121,36 +121,46 @@
                 <Label Content="" Name="labelNombreUsuario" Style="{StaticResource textoNegrita}"/>
                 <Button Content="Log Out" Style="{StaticResource botonLogOut}"></Button>
             </StackPanel>
-                <StackPanel Name="panelCaja"  Background="Aquamarine" Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical" Name="panelCajaIzquierda">
-                        <DataGrid Name="listaTicket"/>
-                        <!--#region numeros caja-->
-                        <WrapPanel HorizontalAlignment="Center" Name="panelTecladoCaja" Height="300" Margin="0,-50,0,0" Width="186">
-                            <TextBox x:Name="textBoxTeclado" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449"/>
-                            <Button x:Name="buttonCaja1" Content="1" Style="{StaticResource botonesCaja}" Click="buttonCaja1_Click"/>
-                            <Button x:Name="buttonCaja2" Content="2" Style="{StaticResource botonesCaja}" Click="buttonCaja2_Click"/>
-                            <Button x:Name="buttonCaja3" Content="3" Style="{StaticResource botonesCaja}" Click="buttonCaja3_Click"/>
-                            <Button x:Name="buttonCaja4" Content="4" Style="{StaticResource botonesCaja}" Click="buttonCaja4_Click"/>
-                            <Button x:Name="buttonCaja5" Content="5" Style="{StaticResource botonesCaja}" Click="buttonCaja5_Click"/>
-                            <Button x:Name="buttonCaja6" Content="6" Style="{StaticResource botonesCaja}" Click="buttonCaja6_Click"/>
-                            <Button x:Name="buttonCaja7" Content="7" Style="{StaticResource botonesCaja}" Click="buttonCaja7_Click"/>
-                            <Button x:Name="buttonCaja8" Content="8" Style="{StaticResource botonesCaja}" Click="buttonCaja8_Click"/>
-                            <Button x:Name="buttonCaja9" Content="9" Style="{StaticResource botonesCaja}" Click="buttonCaja9_Click"/>
-                            <Button x:Name="buttonCajaCancel" Content="C" Style="{StaticResource botonesCaja}" Click="buttonCajaCancel_Click"/>
-                            <Button x:Name="buttonCaja0" Content="0" Style="{StaticResource botonesCaja}" Click="buttonCaja0_Click"/>
-                            <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
-                        </WrapPanel>
-                        <!--#endregion-->
-                    </StackPanel>
-                <WrapPanel Name="panelProductos">
+
+            <StackPanel Name="panelCaja"  Orientation="Vertical" Width="690" Visibility="Visible">
+
+                <StackPanel Orientation="Horizontal" Name="panelCajaTop">
+                    <!--#region numeros caja-->
+                    <WrapPanel HorizontalAlignment="Center" Name="panelTecladoCaja" Height="300" Margin="0,-50,0,0" Width="186">
+                        <TextBox x:Name="textBoxTeclado" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449" />
+                        <Button x:Name="buttonCaja1" Content="1" Style="{StaticResource botonesCaja}" Click="buttonCaja1_Click"/>
+                        <Button x:Name="buttonCaja2" Content="2" Style="{StaticResource botonesCaja}" Click="buttonCaja2_Click"/>
+                        <Button x:Name="buttonCaja3" Content="3" Style="{StaticResource botonesCaja}" Click="buttonCaja3_Click"/>
+                        <Button x:Name="buttonCaja4" Content="4" Style="{StaticResource botonesCaja}" Click="buttonCaja4_Click"/>
+                        <Button x:Name="buttonCaja5" Content="5" Style="{StaticResource botonesCaja}" Click="buttonCaja5_Click"/>
+                        <Button x:Name="buttonCaja6" Content="6" Style="{StaticResource botonesCaja}" Click="buttonCaja6_Click"/>
+                        <Button x:Name="buttonCaja7" Content="7" Style="{StaticResource botonesCaja}" Click="buttonCaja7_Click"/>
+                        <Button x:Name="buttonCaja8" Content="8" Style="{StaticResource botonesCaja}" Click="buttonCaja8_Click"/>
+                        <Button x:Name="buttonCaja9" Content="9" Style="{StaticResource botonesCaja}" Click="buttonCaja9_Click"/>
+                        <Button x:Name="buttonCajaCancel" Content="C" Style="{StaticResource botonesCaja}" Click="buttonCajaCancel_Click"/>
+                        <Button x:Name="buttonCaja0" Content="0" Style="{StaticResource botonesCaja}" Click="buttonCaja0_Click"/>
+                        <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
+                    </WrapPanel>
+                    <!--#endregion-->
+                    <WrapPanel Name="panelProductos" >
+                        <Button Name="buttonNuevoTicket" Content="Nuevo Ticket" Width="100" Height="100" Click="buttonNuevoTicket_Click"></Button>
+                        <Button Name="buttonconfirmarTicket" Content="Confirmar" Width="100" Height="100" Click="buttonconfirmarTicket_Click" />
+                    </WrapPanel>
+
+                </StackPanel >
+                <DataGrid Name="listaTicket" Width="690"/>
+                <!-- 
                     <Image Name="imagenCocacola" Source="Iconos\Productos\cocacola.jpg" Width="100" Height="100"></Image>
                     <Image Name="imagenCocacolaL" Source="Iconos\Productos\cocacolaL.jpg" Width="100" Height="100"></Image>
                     <Image Name="imagenCocacolaL0" Source="Iconos\Productos\cocacola0.jpg" Width="100" Height="100"></Image>
                     <Image Name="imagenKasN" Source="Iconos\Productos\kasN.jpg" Width="100" Height="100"></Image>
                     <Image Name="imagenKasL" Source="Iconos\Productos\kasL.jpg" Width="100" Height="100"></Image>
-                </WrapPanel>
-                </StackPanel>
-         
+                    -->
+            </StackPanel>
+            <StackPanel Name="panelAlmacen" Width="690" Orientation="Horizontal" Visibility="Visible">
+
+            </StackPanel>
+
         </DockPanel >
     </Grid>
 </Window>

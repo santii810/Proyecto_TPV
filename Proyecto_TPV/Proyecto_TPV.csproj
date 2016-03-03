@@ -72,10 +72,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Migrations\201602181136530_TPV01.cs" />
-    <Compile Include="Migrations\201602181136530_TPV01.Designer.cs">
-      <DependentUpon>201602181136530_TPV01.cs</DependentUpon>
+    <Compile Include="Migrations\201603010826490_TPV01.cs" />
+    <Compile Include="Migrations\201603010826490_TPV01.Designer.cs">
+      <DependentUpon>201603010826490_TPV01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603031130323_TPV02.cs" />
+    <Compile Include="Migrations\201603031130323_TPV02.Designer.cs">
+      <DependentUpon>201603031130323_TPV02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603031138294_TPV03.cs" />
+    <Compile Include="Migrations\201603031138294_TPV03.Designer.cs">
+      <DependentUpon>201603031138294_TPV03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603031202483_TPV04.cs" />
+    <Compile Include="Migrations\201603031202483_TPV04.Designer.cs">
+      <DependentUpon>201603031202483_TPV04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\Context.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -93,7 +106,6 @@
     <Compile Include="Repositorios\RepositorioUsuario.cs" />
     <Compile Include="Repositorios\RespositorioGenerico.cs" />
     <Compile Include="Repositorios\UnidadDeTrabajo.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Articulo.cs" />
     <Compile Include="Model\LineaPedido.cs" />
     <Compile Include="Model\LineaTicket.cs" />
@@ -115,8 +127,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201602181136530_TPV01.resx">
-      <DependentUpon>201602181136530_TPV01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603010826490_TPV01.resx">
+      <DependentUpon>201603010826490_TPV01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031130323_TPV02.resx">
+      <DependentUpon>201603031130323_TPV02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031138294_TPV03.resx">
+      <DependentUpon>201603031138294_TPV03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603031202483_TPV04.resx">
+      <DependentUpon>201603031202483_TPV04.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,7 +183,7 @@
     <Resource Include="Iconos\Productos\1906.jpg" />
     <Resource Include="Iconos\Productos\caña.jpg" />
     <Resource Include="Iconos\Productos\cocacola.jpg" />
-    <Resource Include="Iconos\Productos\estrella.jpeg" />
+    <Content Include="Iconos\Productos\estrella.jpg" />
     <Resource Include="Iconos\Productos\Schweppes.png" />
   </ItemGroup>
   <ItemGroup>

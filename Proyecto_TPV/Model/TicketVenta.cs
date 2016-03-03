@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,9 @@ namespace Proyecto_TPV.Model.DB
         public virtual Sesion Sesion { get; set; }
         public virtual ICollection<LineaTicket> LineasTicket { get; set; }
 
+        public TicketVenta()
+        {
+            LineasTicket = new Collection<LineaTicket>();
+        }
     }
 }

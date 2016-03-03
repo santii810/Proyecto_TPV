@@ -14,6 +14,9 @@ namespace Proyecto_TPV.Model.DB
         public string LineaTicketId { get; set; }
         [Required]
         public int cantidad { get; set; }
+        
+        public double precioArticulo { get; set; }
+        public double precioLinea { get; set; }
 
         public virtual string TicketVentaId { get; set; }
         public virtual TicketVenta TicketVenta { get; set; }

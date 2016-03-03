@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Proyecto_TPV.Model.DB;
+using Proyecto_TPV.Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,13 @@ namespace Proyecto_TPV
     /// </summary>
     public partial class MainWindow : Window
     {
+        UnidadDeTrabajo udt = new UnidadDeTrabajo();
+
+        ICollection<Articulo> articulos;
+        ICollection<Pedido> pedidos;
+
+        TicketVenta tmpTicket = new TicketVenta();
+
         string strCodigo = "";
         const int COD_AUTENTICADO_OK = 1;
         const int COD_ESTADO_INICIAL = 2;
@@ -29,13 +38,19 @@ namespace Proyecto_TPV
         {
             InitializeComponent();
             updateIU(COD_ESTADO_INICIAL);
+            articulos = udt.RepositorioArticulo.Get().ToList();
 
         }
         #region Metodos privados
         private bool autenticado()
         {
-
             return true;
+        }
+
+        #region Metodos privados de diseño
+        private void actualizarTicketCaja(TicketVenta ticket)
+        {
+            listaTicket.ItemsSource = ticket.LineasTicket.ToList();
         }
         private void updateIU(int codCambio)
         {
@@ -60,6 +75,10 @@ namespace Proyecto_TPV
                     break;
             }
         }
+        #endregion
+
+
+
         #endregion
 
 
@@ -151,12 +170,12 @@ namespace Proyecto_TPV
         #region Listeners numeros caja
         private void buttonCaja1_Click(object sender, RoutedEventArgs e)
         {
-   
+
         }
 
         private void buttonCaja2_Click(object sender, RoutedEventArgs e)
         {
-          
+
         }
 
         private void buttonCaja3_Click(object sender, RoutedEventArgs e)
@@ -172,7 +191,7 @@ namespace Proyecto_TPV
 
         private void buttonCaja5_Click(object sender, RoutedEventArgs e)
         {
- 
+
         }
 
         private void buttonCaja6_Click(object sender, RoutedEventArgs e)
@@ -182,7 +201,7 @@ namespace Proyecto_TPV
 
         private void buttonCaja7_Click(object sender, RoutedEventArgs e)
         {
-   
+
         }
 
         private void buttonCaja8_Click(object sender, RoutedEventArgs e)
@@ -214,6 +233,68 @@ namespace Proyecto_TPV
         private void Caja_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             updateIU(COD_PANEL_CAJA);
+            /*Articulo item = new Articulo
+            {
+                NombreArticulo = "cocacola",
+                ArticuloId = "cocacola"
+            };*/
+            foreach (Articulo item in articulos)
+            {
+                Image tmpImagen = new Image();
+                BitmapImage src = new BitmapImage();
+                src.BeginInit();
+                src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                src.EndInit();
+                tmpImagen.Source = src;
+                tmpImagen.Stretch = Stretch.Uniform;
+                tmpImagen.Width = 100;
+                tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
+
+                this.panelProductos.Children.Add(tmpImagen);
+            }
+
+
+
+
+        }
+
+        private void pulsarArticuloCaja(Articulo item)
+        {
+
+            if (tmpTicket.LineasTicket.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault() == null)
+            {
+
+                LineaTicket tmpLineaTicket = new LineaTicket
+                {
+                    ArticuloId = item.ArticuloId,
+                    cantidad = 1,
+                    precioArticulo = item.PrecioArticulo
+                };
+                tmpTicket.LineasTicket.Add(tmpLineaTicket);
+            }
+            else
+            {
+                tmpTicket.LineasTicket.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault().cantidad++;
+            }
+
+            actualizarTicketCaja(tmpTicket);
+        }
+
+
+        private void buttonNuevoTicket_Click(object sender, RoutedEventArgs e)
+        {
+
+            MessageBoxResult result = MessageBox.Show("Borrar el ticket actual?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                tmpTicket = new TicketVenta();
+                actualizarTicketCaja(tmpTicket);
+            }
+        }
+
+        private void buttonconfirmarTicket_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
     #endregion

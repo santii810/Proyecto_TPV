@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Proyecto_TPV.Model.DB
 {
@@ -18,7 +19,6 @@ namespace Proyecto_TPV.Model.DB
         public double PrecioArticulo { get; set; }
         [Required]
         public int StockArticulo { get; set; }
-
 
         public virtual ICollection<LineaTicket> LineasTicket { get; set; }
         public virtual ICollection<LineaPedido> LineasPedido { get; set; }

@@ -14,7 +14,9 @@ namespace Proyecto_TPV.Model.DB
         public string LineaPedidoId { get; set; }
         [Required]
         public int cantidad { get; set; }
+        public double precioArticulo { get; set; }
 
+        public double precioLinea { get { return this.cantidad * this.precioArticulo; } }
 
         public virtual string ArticuloId { get; set; }
         public virtual Articulo Articulo { get; set; }

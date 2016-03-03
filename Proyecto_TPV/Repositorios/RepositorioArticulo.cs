@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto_TPV.Repositorios
 {
-    public class RepositorioArticulo: RepositorioGenerico<Articulo>
+    public class RepositorioArticulo : RepositorioGenerico<Articulo>
     {
-        public RepositorioArticulo(Context context)            : base(context)
+        public RepositorioArticulo(Context context) : base(context)
         {
         }
     }

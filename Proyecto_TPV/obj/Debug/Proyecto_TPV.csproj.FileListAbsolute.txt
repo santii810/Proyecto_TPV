@@ -33,7 +33,6 @@ C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV_Ma
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV_MarkupCompile.lref
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\MainWindow.baml
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.g.resources
-C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Properties.Resources.resources
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.csproj.GenerateResource.Cache
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\bin\Debug\Proyecto_TPV.exe.config
@@ -55,3 +54,8 @@ C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.g.
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Properties.Resources.resources
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.csproj.GenerateResource.Cache
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV_Content.g.cs
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV03.resources
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV04.resources
