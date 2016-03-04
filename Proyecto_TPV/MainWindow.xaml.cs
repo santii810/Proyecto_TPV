@@ -57,7 +57,7 @@ namespace Proyecto_TPV
         #region Metodos privados de diseño
         private void actualizarTicketCaja(TicketVenta ticket)
         {
-            listaTicket.ItemsSource = ticket.LineasTicket.ToList().Select(i=> new {/*i.Articulo.NombreArticulo, */i.cantidad,i.precioArticulo ,i.precioLinea});
+            listaTicket.ItemsSource = ticket.LineasTicket.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad, i.precioArticulo, i.precioLinea });
             //labelPrecioTotal.Content = 
         }
         private void updateIU(int codCambio)
@@ -298,15 +298,12 @@ namespace Proyecto_TPV
         private void buttonconfirmarTicket_Click(object sender, RoutedEventArgs e)
         {
 
-            /*
-            foreach (LineaTicket item in tmpTicket)
-            {
-                ticketGuardar.LineasTicket.Add(item);
-            }
-            */
             tmpTicket.SesionId = sesionActual.SesionId;
             udt.RepositorioTicketVenta.Insert(tmpTicket);
-            udt.Save(); 
+            udt.Save();
+            MessageBox.Show("Añadido correctamente");
+            tmpTicket = new TicketVenta();
+            actualizarTicketCaja(tmpTicket);
         }
     }
     #endregion
