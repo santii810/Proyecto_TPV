@@ -33,24 +33,32 @@ namespace Proyecto_TPV
         const int COD_AUTENTICADO_OK = 1;
         const int COD_ESTADO_INICIAL = 2;
         const int COD_PANEL_CAJA = 3;
+        private Sesion sesionActual;
 
         public MainWindow()
         {
             InitializeComponent();
             updateIU(COD_ESTADO_INICIAL);
-            articulos = udt.RepositorioArticulo.Get().ToList();
 
         }
         #region Metodos privados
         private bool autenticado()
         {
+            sesionActual = new Sesion
+            {
+                InicioSesion = DateTime.Now,
+                UsuarioId = 1
+            };
+            udt.RepositorioSesion.Insert(sesionActual);
+            udt.Save();
             return true;
         }
 
         #region Metodos privados de diseño
         private void actualizarTicketCaja(TicketVenta ticket)
         {
-            listaTicket.ItemsSource = ticket.LineasTicket.ToList();
+            listaTicket.ItemsSource = ticket.LineasTicket.ToList().Select(i=> new {/*i.Articulo.NombreArticulo, */i.cantidad,i.precioArticulo ,i.precioLinea});
+            //labelPrecioTotal.Content = 
         }
         private void updateIU(int codCambio)
         {
@@ -232,12 +240,9 @@ namespace Proyecto_TPV
 
         private void Caja_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_CAJA);
-            /*Articulo item = new Articulo
-            {
-                NombreArticulo = "cocacola",
-                ArticuloId = "cocacola"
-            };*/
+
             foreach (Articulo item in articulos)
             {
                 Image tmpImagen = new Image();
@@ -249,7 +254,6 @@ namespace Proyecto_TPV
                 tmpImagen.Stretch = Stretch.Uniform;
                 tmpImagen.Width = 100;
                 tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
-
                 this.panelProductos.Children.Add(tmpImagen);
             }
 
@@ -263,7 +267,6 @@ namespace Proyecto_TPV
 
             if (tmpTicket.LineasTicket.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault() == null)
             {
-
                 LineaTicket tmpLineaTicket = new LineaTicket
                 {
                     ArticuloId = item.ArticuloId,
@@ -294,7 +297,16 @@ namespace Proyecto_TPV
 
         private void buttonconfirmarTicket_Click(object sender, RoutedEventArgs e)
         {
-           
+
+            /*
+            foreach (LineaTicket item in tmpTicket)
+            {
+                ticketGuardar.LineasTicket.Add(item);
+            }
+            */
+            tmpTicket.SesionId = sesionActual.SesionId;
+            udt.RepositorioTicketVenta.Insert(tmpTicket);
+            udt.Save(); 
         }
     }
     #endregion

@@ -12,7 +12,7 @@ namespace Proyecto_TPV.Model.DB
     [Table("Articulos")]
     public class Articulo
     {
-        public string ArticuloId { get; set; }
+        public int ArticuloId { get; set; }
         [Required]
         public string NombreArticulo { get; set; }
         [Required]

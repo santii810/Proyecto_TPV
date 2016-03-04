@@ -13,7 +13,7 @@ namespace Proyecto_TPV.Model.DB
     {
 
         [Key]
-        public string ProveedorId { get; set;}
+        public int ProveedorId { get; set;}
         [Required]
         public string NombreProveedor { get; set; }
         [Required]

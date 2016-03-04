@@ -11,10 +11,10 @@ namespace Proyecto_TPV.Model.DB
     [Table("TicketsVenta")]
     public class TicketVenta
     {
-        public string TicketVentaId { get; set; }
+        public int TicketVentaId { get; set; }
 
 
-        public virtual string SesionId { get; set; }
+        public virtual int SesionId { get; set; }
         public virtual Sesion Sesion { get; set; }
         public virtual ICollection<LineaTicket> LineasTicket { get; set; }
 

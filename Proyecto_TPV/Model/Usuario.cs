@@ -11,7 +11,7 @@ namespace Proyecto_TPV.Model.DB
     [Table("Usuarios")]
     public class Usuario
     {
-        public string UsuarioId { get; set; }
+        public int UsuarioId { get; set; }
         [Required]
         public string NickUsuario { get; set; }
         [Required]

@@ -72,21 +72,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Migrations\201603010826490_TPV01.cs" />
-    <Compile Include="Migrations\201603010826490_TPV01.Designer.cs">
-      <DependentUpon>201603010826490_TPV01.cs</DependentUpon>
+    <Compile Include="Migrations\201603040956395_TPV01.cs" />
+    <Compile Include="Migrations\201603040956395_TPV01.Designer.cs">
+      <DependentUpon>201603040956395_TPV01.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603031130323_TPV02.cs" />
-    <Compile Include="Migrations\201603031130323_TPV02.Designer.cs">
-      <DependentUpon>201603031130323_TPV02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603031138294_TPV03.cs" />
-    <Compile Include="Migrations\201603031138294_TPV03.Designer.cs">
-      <DependentUpon>201603031138294_TPV03.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603031202483_TPV04.cs" />
-    <Compile Include="Migrations\201603031202483_TPV04.Designer.cs">
-      <DependentUpon>201603031202483_TPV04.cs</DependentUpon>
+    <Compile Include="Migrations\201603041013145_TPV02.cs" />
+    <Compile Include="Migrations\201603041013145_TPV02.Designer.cs">
+      <DependentUpon>201603041013145_TPV02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\Context.cs" />
@@ -127,17 +119,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201603010826490_TPV01.resx">
-      <DependentUpon>201603010826490_TPV01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603040956395_TPV01.resx">
+      <DependentUpon>201603040956395_TPV01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603031130323_TPV02.resx">
-      <DependentUpon>201603031130323_TPV02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603031138294_TPV03.resx">
-      <DependentUpon>201603031138294_TPV03.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603031202483_TPV04.resx">
-      <DependentUpon>201603031202483_TPV04.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603041013145_TPV02.resx">
+      <DependentUpon>201603041013145_TPV02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -175,20 +161,17 @@
   <ItemGroup>
     <Resource Include="Iconos\almacen64.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Iconos\Productos\kasL.jpg" />
-    <Resource Include="Iconos\Productos\kasN.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\Productos\1906.jpg" />
+    <Resource Include="Iconos\Productos\8.jpg" />
     <Resource Include="Iconos\Productos\caña.jpg" />
-    <Resource Include="Iconos\Productos\cocacola.jpg" />
-    <Content Include="Iconos\Productos\estrella.jpg" />
-    <Resource Include="Iconos\Productos\Schweppes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\Productos\cocacola0.jpg" />
-    <Resource Include="Iconos\Productos\cocacolaL.jpg" />
+    <Resource Include="Iconos\Productos\3.jpg" />
+    <Resource Include="Iconos\Productos\2.jpg" />
+    <Resource Include="Iconos\Productos\1.jpg" />
+    <Resource Include="Iconos\Productos\7.jpg" />
+    <Resource Include="Iconos\Productos\5.jpg" />
+    <Resource Include="Iconos\Productos\4.jpg" />
+    <Resource Include="Iconos\Productos\6.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

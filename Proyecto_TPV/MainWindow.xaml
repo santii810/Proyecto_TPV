@@ -62,6 +62,7 @@
             <Setter Property="FontFamily" Value="Verdana"/>
             <Setter Property="Background" Value="Bisque"/>
             <Setter Property="Border.CornerRadius" Value="1"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
 
 
         </Style>
@@ -142,13 +143,24 @@
                         <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
                     </WrapPanel>
                     <!--#endregion-->
-                    <WrapPanel Name="panelProductos" >
-                        <Button Name="buttonNuevoTicket" Content="Nuevo Ticket" Width="100" Height="100" Click="buttonNuevoTicket_Click"></Button>
-                        <Button Name="buttonconfirmarTicket" Content="Confirmar" Width="100" Height="100" Click="buttonconfirmarTicket_Click" />
+                    <StackPanel Name="panelCajaDerecha" Orientation="Vertical">
+                        
+                    <WrapPanel Name="panelProductos" Width="490" >
                     </WrapPanel>
-
+                        <StackPanel Orientation="Horizontal">
+                            <Button Name="buttonNuevoTicket" Content="Nuevo Ticket" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonNuevoTicket_Click"></Button>
+                        <Button Name="buttonconfirmarTicket" Content="Confirmar" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonconfirmarTicket_Click" />
+                            
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel >
+                <StackPanel Orientation="Vertical">
                 <DataGrid Name="listaTicket" Width="690"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Precio total: "/>
+                        <Label Name="labelPrecioTotal"/>
+                    </StackPanel>
+                </StackPanel>
                 <!-- 
                     <Image Name="imagenCocacola" Source="Iconos\Productos\cocacola.jpg" Width="100" Height="100"></Image>
                     <Image Name="imagenCocacolaL" Source="Iconos\Productos\cocacolaL.jpg" Width="100" Height="100"></Image>

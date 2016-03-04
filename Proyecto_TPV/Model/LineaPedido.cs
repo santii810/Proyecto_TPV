@@ -11,16 +11,16 @@ namespace Proyecto_TPV.Model.DB
     [Table("LineasPedido")]
     public class LineaPedido
     {
-        public string LineaPedidoId { get; set; }
+        public int LineaPedidoId { get; set; }
         [Required]
         public int cantidad { get; set; }
         public double precioArticulo { get; set; }
 
         public double precioLinea { get { return this.cantidad * this.precioArticulo; } }
 
-        public virtual string ArticuloId { get; set; }
+        public virtual int ArticuloId { get; set; }
         public virtual Articulo Articulo { get; set; }
-        public virtual string PedidoId { get; set; }
+        public virtual int PedidoId { get; set; }
         public virtual Pedido Pedido { get; set; }
 
 

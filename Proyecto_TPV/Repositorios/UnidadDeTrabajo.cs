@@ -136,11 +136,27 @@ namespace Proyecto_TPV.Repositorios
                 return repositorioUsuario;
             }
         }
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
     }
 }
