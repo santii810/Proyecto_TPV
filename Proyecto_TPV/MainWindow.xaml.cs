@@ -25,15 +25,19 @@ namespace Proyecto_TPV
         UnidadDeTrabajo udt = new UnidadDeTrabajo();
 
         ICollection<Articulo> articulos;
-        ICollection<Pedido> pedidos;
+        Usuario usuario;
+
 
         TicketVenta tmpTicket = new TicketVenta();
+        private Sesion sesionActual;
+
 
         string strCodigo = "";
         const int COD_AUTENTICADO_OK = 1;
         const int COD_ESTADO_INICIAL = 2;
         const int COD_PANEL_CAJA = 3;
-        private Sesion sesionActual;
+        const int COD_ACTUALIZAR_TICKET_CAJA = 4;
+        const int COD_PANEL_ALMACEN = 5;
 
         public MainWindow()
         {
@@ -42,42 +46,134 @@ namespace Proyecto_TPV
 
         }
         #region Metodos privados
-        private bool autenticado()
+        private bool autenticado(string codigo)
         {
-            sesionActual = new Sesion
+            bool autenticado = false;
+            foreach (Usuario item in udt.RepositorioUsuario.Get().ToList())
             {
-                InicioSesion = DateTime.Now,
-                UsuarioId = 1
-            };
-            udt.RepositorioSesion.Insert(sesionActual);
-            udt.Save();
-            return true;
+                if (item.password == codigo)
+                {
+                    usuario = item;
+                    autenticado = true;
+                }
+            }
+            if (autenticado)
+            {
+                sesionActual = new Sesion
+                {
+                    InicioSesion = DateTime.Now,
+                    UsuarioId = 1
+                };
+                udt.RepositorioSesion.Insert(sesionActual);
+                udt.Save();
+            }
+            return autenticado;
+        }
+        private void borrarArticulo(Articulo item)
+        {
+            //throw new NotImplementedException();
         }
 
         #region Metodos privados de diseño
-        private void actualizarTicketCaja(TicketVenta ticket)
+        private void añadirArticulosAlmacen()
         {
-            listaTicket.ItemsSource = ticket.LineasTicket.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad, i.precioArticulo, i.precioLinea });
-            //labelPrecioTotal.Content = 
+            foreach (Articulo item in articulos)
+            {
+
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                //añado imagen
+                Image tmpImagen = new Image();
+                BitmapImage src = new BitmapImage();
+                src.BeginInit();
+                src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                src.EndInit();
+                tmpImagen.Source = src;
+                tmpImagen.Stretch = Stretch.Uniform;
+                tmpImagen.Width = 50;
+                tmpImagen.Height = 50;
+                tmpPanel.Children.Add(tmpImagen);
+                //nombre
+                Label tmpLabelNombre = new Label();
+                tmpLabelNombre.Content = item.NombreArticulo;
+                tmpLabelNombre.Width = 150;
+                tmpPanel.Children.Add(tmpLabelNombre);
+
+                //precio
+                Label tmpLabelPrecio = new Label();
+                tmpLabelPrecio.Content = item.PrecioArticulo.ToString();
+                tmpLabelPrecio.Width = 30;
+                tmpPanel.Children.Add(tmpLabelPrecio);
+
+                // stock
+                Label tmpLabelStock = new Label();
+                tmpLabelStock.Content = item.StockArticulo.ToString();
+                tmpLabelStock.Width = 30;
+                tmpPanel.Children.Add(tmpLabelStock);
+
+                //boton borrar
+                Button tmpButton = new Button();
+                tmpButton.Content = "Borrar";
+                tmpButton.Click += delegate { borrarArticulo(item); };
+                tmpButton.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButton);
+
+
+
+
+
+
+                this.panelAlmacen.Children.Add(tmpPanel);
+            }
         }
+
+        private void añadirArticulosCaja()
+        {
+            foreach (Articulo item in articulos)
+            {
+                Image tmpImagen = new Image();
+                BitmapImage src = new BitmapImage();
+                src.BeginInit();
+                src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                src.EndInit();
+                tmpImagen.Source = src;
+                tmpImagen.Stretch = Stretch.Uniform;
+                tmpImagen.Width = 100;
+                tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
+                this.panelProductos.Children.Add(tmpImagen);
+            }
+        }
+
         private void updateIU(int codCambio)
         {
+            autenticationPanel.Visibility = Visibility.Collapsed;
+            panelPrincipal.Visibility = Visibility.Visible;
+            panelCaja.Visibility = Visibility.Collapsed;
+            panelAlmacen.Visibility = Visibility.Collapsed;
+
+
             switch (codCambio)
             {
                 case COD_ESTADO_INICIAL:
                     autenticationPanel.Visibility = Visibility.Visible;
                     panelPrincipal.Visibility = Visibility.Collapsed;
-                    panelCaja.Visibility = Visibility.Collapsed;
                     break;
                 case COD_AUTENTICADO_OK:
-                    autenticationPanel.Visibility = Visibility.Collapsed;
-                    panelCaja.Visibility = Visibility.Collapsed;
-                    panelPrincipal.Visibility = Visibility.Visible;
                     break;
                 case COD_PANEL_CAJA:
-                    autenticationPanel.Visibility = Visibility.Collapsed;
                     panelCaja.Visibility = Visibility.Visible;
-                    panelPrincipal.Visibility = Visibility.Visible;
+                    añadirArticulosCaja();
+                    break;
+                case COD_ACTUALIZAR_TICKET_CAJA:
+                    panelCaja.Visibility = Visibility.Visible;
+                    listaTicket.ItemsSource = tmpTicket.LineasTicket.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad, i.precioArticulo, i.precioLinea });
+                    labelPrecioTotal.Content = tmpTicket.precioTicket.ToString();
+                    break;
+                case COD_PANEL_ALMACEN:
+                    panelAlmacen.Visibility = Visibility.Visible;
+                    añadirArticulosAlmacen();
                     break;
                 default:
                     break;
@@ -166,7 +262,7 @@ namespace Proyecto_TPV
 
         private void buttonAutenticadoOk_Click(object sender, RoutedEventArgs e)
         {
-            if (autenticado())
+            if (autenticado(strCodigo))
             {
                 updateIU(COD_AUTENTICADO_OK);
 
@@ -243,24 +339,9 @@ namespace Proyecto_TPV
             articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_CAJA);
 
-            foreach (Articulo item in articulos)
-            {
-                Image tmpImagen = new Image();
-                BitmapImage src = new BitmapImage();
-                src.BeginInit();
-                src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
-                src.EndInit();
-                tmpImagen.Source = src;
-                tmpImagen.Stretch = Stretch.Uniform;
-                tmpImagen.Width = 100;
-                tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
-                this.panelProductos.Children.Add(tmpImagen);
-            }
-
-
-
-
         }
+
+
 
         private void pulsarArticuloCaja(Articulo item)
         {
@@ -280,7 +361,7 @@ namespace Proyecto_TPV
                 tmpTicket.LineasTicket.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault().cantidad++;
             }
 
-            actualizarTicketCaja(tmpTicket);
+            updateIU(COD_ACTUALIZAR_TICKET_CAJA);
         }
 
 
@@ -291,19 +372,29 @@ namespace Proyecto_TPV
             if (result == MessageBoxResult.Yes)
             {
                 tmpTicket = new TicketVenta();
-                actualizarTicketCaja(tmpTicket);
+                updateIU(COD_ACTUALIZAR_TICKET_CAJA);
             }
         }
 
         private void buttonconfirmarTicket_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Guardar ticket?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                tmpTicket.SesionId = sesionActual.SesionId;
+                udt.RepositorioTicketVenta.Insert(tmpTicket);
+                udt.Save();
+                MessageBox.Show("Añadido correctamente");
+                tmpTicket = new TicketVenta();
+                updateIU(COD_ACTUALIZAR_TICKET_CAJA);
+            }
+        }
 
-            tmpTicket.SesionId = sesionActual.SesionId;
-            udt.RepositorioTicketVenta.Insert(tmpTicket);
-            udt.Save();
-            MessageBox.Show("Añadido correctamente");
-            tmpTicket = new TicketVenta();
-            actualizarTicketCaja(tmpTicket);
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            articulos = udt.RepositorioArticulo.Get().ToList();
+            updateIU(COD_PANEL_ALMACEN);
+
         }
     }
     #endregion

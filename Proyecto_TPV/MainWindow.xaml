@@ -109,7 +109,7 @@
                         </StackPanel>
                         <!-- boton almacen-->
                         <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
-                            <Image Source="Iconos/almacen64.png"></Image>
+                            <Image Source="Iconos/almacen64.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
                             <Label  Content="Almacen" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
 
@@ -126,7 +126,8 @@
             <StackPanel Name="panelCaja"  Orientation="Vertical" Width="690" Visibility="Visible">
 
                 <StackPanel Orientation="Horizontal" Name="panelCajaTop">
-                    <!--#region numeros caja-->
+                    <!--
+              
                     <WrapPanel HorizontalAlignment="Center" Name="panelTecladoCaja" Height="300" Margin="0,-50,0,0" Width="186">
                         <TextBox x:Name="textBoxTeclado" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449" />
                         <Button x:Name="buttonCaja1" Content="1" Style="{StaticResource botonesCaja}" Click="buttonCaja1_Click"/>
@@ -142,20 +143,21 @@
                         <Button x:Name="buttonCaja0" Content="0" Style="{StaticResource botonesCaja}" Click="buttonCaja0_Click"/>
                         <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
                     </WrapPanel>
-                    <!--#endregion-->
+                 
+                    -->
                     <StackPanel Name="panelCajaDerecha" Orientation="Vertical">
-                        
-                    <WrapPanel Name="panelProductos" Width="490" >
-                    </WrapPanel>
+
+                        <WrapPanel Name="panelProductos" Width="690" >
+                        </WrapPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button Name="buttonNuevoTicket" Content="Nuevo Ticket" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonNuevoTicket_Click"></Button>
-                        <Button Name="buttonconfirmarTicket" Content="Confirmar" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonconfirmarTicket_Click" />
-                            
+                            <Button Name="buttonconfirmarTicket" Content="Confirmar" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonconfirmarTicket_Click" />
+
                         </StackPanel>
                     </StackPanel>
                 </StackPanel >
                 <StackPanel Orientation="Vertical">
-                <DataGrid Name="listaTicket" Width="690"/>
+                    <DataGrid Name="listaTicket" Width="690"/>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Precio total: "/>
                         <Label Name="labelPrecioTotal"/>
@@ -169,10 +171,9 @@
                     <Image Name="imagenKasL" Source="Iconos\Productos\kasL.jpg" Width="100" Height="100"></Image>
                     -->
             </StackPanel>
-            <StackPanel Name="panelAlmacen" Width="690" Orientation="Horizontal" Visibility="Visible">
-
-            </StackPanel>
-
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="panelAlmacen" Width="690" Orientation="Vertical" Visibility="Visible" />
+            </ScrollViewer>
         </DockPanel >
     </Grid>
 </Window>

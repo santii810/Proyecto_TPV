@@ -161,7 +161,10 @@
   <ItemGroup>
     <Resource Include="Iconos\almacen64.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Iconos\Productos\10.jpg" />
+    <Resource Include="Iconos\Productos\9.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Iconos\Productos\8.jpg" />
     <Resource Include="Iconos\Productos\caña.jpg" />
