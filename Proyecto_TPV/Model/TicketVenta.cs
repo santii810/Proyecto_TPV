@@ -12,7 +12,18 @@ namespace Proyecto_TPV.Model.DB
     public class TicketVenta
     {
         public int TicketVentaId { get; set; }
-
+        public double precioTicket
+        {
+            get
+            {
+                double precio = 0;
+                foreach (LineaTicket item in LineasTicket)
+                {
+                    precio += item.precioLinea;
+                }
+                return precio;
+            }
+        }
 
         public virtual int SesionId { get; set; }
         public virtual Sesion Sesion { get; set; }
