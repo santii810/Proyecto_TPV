@@ -77,41 +77,41 @@ namespace Proyecto_TPV.Migrations
             context.Articulos.AddOrUpdate(
 new Articulo
 {
-NombreArticulo = "Schweppes",
-PrecioArticulo = 1.8,
-StockArticulo = 0
+    NombreArticulo = "Schweppes",
+    PrecioArticulo = 1.8,
+    StockArticulo = 0
 
 });
             context.Articulos.AddOrUpdate(
 new Articulo
 {
-NombreArticulo = "Estrella Galicia",
-PrecioArticulo = 2,
-StockArticulo = 0
+    NombreArticulo = "Estrella Galicia",
+    PrecioArticulo = 2,
+    StockArticulo = 0
 
 });
             context.Articulos.AddOrUpdate(
 new Articulo
 {
-NombreArticulo = "Estrella 1906",
-PrecioArticulo = 2.2,
-StockArticulo = 0
+    NombreArticulo = "Estrella 1906",
+    PrecioArticulo = 2.2,
+    StockArticulo = 0
 
 });
             context.Articulos.AddOrUpdate(
 new Articulo
 {
-NombreArticulo = "Agua",
-PrecioArticulo = 1.2,
-StockArticulo = 0
+    NombreArticulo = "Agua",
+    PrecioArticulo = 1.2,
+    StockArticulo = 0
 
 });
             context.Articulos.AddOrUpdate(
 new Articulo
 {
-NombreArticulo = "Cafe",
-PrecioArticulo = 1.2,
-StockArticulo = 0
+    NombreArticulo = "Cafe",
+    PrecioArticulo = 1.2,
+    StockArticulo = 0
 
 });
 
