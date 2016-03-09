@@ -46,6 +46,11 @@ namespace Proyecto_TPV
 
         }
         #region Metodos privados
+        /// <summary>
+        /// Autentica al usuario con el codigo de acceso.
+        /// </summary>
+        /// <param name="codigo">The codigo.</param>
+        /// <returns></returns>
         private bool autenticado(string codigo)
         {
             bool autenticado = false;
@@ -69,14 +74,25 @@ namespace Proyecto_TPV
             }
             return autenticado;
         }
+
+        /// <summary>
+        /// Borra el articulo.
+        /// </summary>
+        /// <param name="item">articulo a borrar</param>
         private void borrarArticulo(Articulo item)
         {
             //throw new NotImplementedException();
         }
 
         #region Metodos privados de diseño
+
+
+        /// <summary>
+        /// Carga dinamicamente la vista de los articulos en el almacen
+        /// </summary>
         private void añadirArticulosAlmacen()
         {
+            panelAlmacen.Children.Clear();
             foreach (Articulo item in articulos)
             {
 
@@ -129,8 +145,13 @@ namespace Proyecto_TPV
             }
         }
 
+
+        /// <summary>
+        /// Carga dinamicamente la vista del panel de caja
+        /// </summary>
         private void añadirArticulosCaja()
         {
+            this.panelCaja.Children.Clear();
             foreach (Articulo item in articulos)
             {
                 Image tmpImagen = new Image();
@@ -146,6 +167,12 @@ namespace Proyecto_TPV
             }
         }
 
+
+
+        /// <summary>
+        /// Actualiza la inferfaz de usuario segun un codigo.
+        /// </summary>
+        /// <param name="codCambio">The cod cambio.</param>
         private void updateIU(int codCambio)
         {
             autenticationPanel.Visibility = Visibility.Collapsed;
@@ -271,74 +298,16 @@ namespace Proyecto_TPV
 
         #endregion
 
-        #region Listeners numeros caja
-        private void buttonCaja1_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void buttonCaja2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja3_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
-
-        private void buttonCaja4_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja5_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja6_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja7_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja8_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja9_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCaja0_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCajaCancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void buttonCajaOk_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
+        /// <summary>
+        /// Handles the MouseLeftButtonUp event of the Caja control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseButtonEventArgs"/> instance containing the event data.</param>
         private void Caja_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_CAJA);
-
         }
 
 
