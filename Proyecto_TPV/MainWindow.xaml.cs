@@ -38,6 +38,7 @@ namespace Proyecto_TPV
         const int COD_PANEL_CAJA = 3;
         const int COD_ACTUALIZAR_TICKET_CAJA = 4;
         const int COD_PANEL_ALMACEN = 5;
+        const int COD_PANEL_CONFIG = 6;
 
         public MainWindow()
         {
@@ -136,10 +137,7 @@ namespace Proyecto_TPV
                 tmpButton.Style = FindResource("botonLogOut") as Style;
                 tmpPanel.Children.Add(tmpButton);
 
-
-
-
-
+               
 
                 this.panelAlmacen.Children.Add(tmpPanel);
             }
@@ -151,7 +149,9 @@ namespace Proyecto_TPV
         /// </summary>
         private void añadirArticulosCaja()
         {
-            this.panelCaja.Children.Clear();
+           panelProductos.Children.Clear();
+
+
             foreach (Articulo item in articulos)
             {
                 Image tmpImagen = new Image();
@@ -166,6 +166,46 @@ namespace Proyecto_TPV
                 this.panelProductos.Children.Add(tmpImagen);
             }
         }
+        private void añadirlistaUsuarios()
+        {
+            panelListaUsuarios.Children.Clear();
+
+            foreach (Usuario item in udt.RepositorioUsuario.Get().ToList())
+            {
+                
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                // stock
+                Label tmpLabelNick = new Label();
+                tmpLabelNick.Content = item.NickUsuario;
+                tmpLabelNick.Width = 100;
+                tmpPanel.Children.Add(tmpLabelNick);
+
+                //nombre
+                Label tmpLabelNombre = new Label();
+                tmpLabelNombre.Content = item.NombreUsuario;
+                tmpLabelNombre.Width = 150;
+                tmpPanel.Children.Add(tmpLabelNombre);
+
+                //precio
+                Label tmpLabelApellido = new Label();
+                tmpLabelApellido.Content = item.ApellidosUsuario;
+                tmpLabelApellido.Width = 150;
+                tmpPanel.Children.Add(tmpLabelApellido);
+
+
+                //boton borrar
+                //Button tmpButton = new Button();
+                //tmpButton.Content = "Borrar";
+                //tmpButton.Click += delegate { borrarArticulo(item); };
+                //tmpButton.Style = FindResource("botonLogOut") as Style;
+                //tmpPanel.Children.Add(tmpButton);
+                
+                this.panelListaUsuarios.Children.Add(tmpPanel);
+            }
+        }
 
 
 
@@ -178,7 +218,9 @@ namespace Proyecto_TPV
             autenticationPanel.Visibility = Visibility.Collapsed;
             panelPrincipal.Visibility = Visibility.Visible;
             panelCaja.Visibility = Visibility.Collapsed;
-            panelAlmacen.Visibility = Visibility.Collapsed;
+            scrollAlmacen.Visibility = Visibility.Collapsed;
+            panelUsuarios.Visibility = Visibility.Collapsed;
+
 
 
             switch (codCambio)
@@ -190,7 +232,10 @@ namespace Proyecto_TPV
                 case COD_AUTENTICADO_OK:
                     break;
                 case COD_PANEL_CAJA:
+                    autenticationPanel.Visibility = Visibility.Collapsed;
                     panelCaja.Visibility = Visibility.Visible;
+                    panelPrincipal.Visibility = Visibility.Visible;
+
                     añadirArticulosCaja();
                     break;
                 case COD_ACTUALIZAR_TICKET_CAJA:
@@ -199,13 +244,20 @@ namespace Proyecto_TPV
                     labelPrecioTotal.Content = tmpTicket.precioTicket.ToString();
                     break;
                 case COD_PANEL_ALMACEN:
-                    panelAlmacen.Visibility = Visibility.Visible;
+                    scrollAlmacen.Visibility = Visibility.Visible;
                     añadirArticulosAlmacen();
+                    break;
+                case COD_PANEL_CONFIG:
+                    panelUsuarios.Visibility = Visibility.Visible;
+                    añadirlistaUsuarios();
+
                     break;
                 default:
                     break;
             }
         }
+
+
         #endregion
 
 
@@ -308,6 +360,20 @@ namespace Proyecto_TPV
         {
             articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_CAJA);
+
+            //foreach (Articulo item in articulos)
+            //{
+            //    Image tmpImagen = new Image();
+            //    BitmapImage src = new BitmapImage();
+            //    src.BeginInit();
+            //    src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+            //    src.EndInit();
+            //    tmpImagen.Source = src;
+            //    tmpImagen.Stretch = Stretch.Uniform;
+            //    tmpImagen.Width = 100;
+            //    tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
+            //    this.panelProductos.Children.Add(tmpImagen);
+            //}
         }
 
 
@@ -364,6 +430,11 @@ namespace Proyecto_TPV
             articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_ALMACEN);
 
+        }
+
+        private void Image_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+            updateIU(COD_PANEL_CONFIG);
         }
     }
     #endregion

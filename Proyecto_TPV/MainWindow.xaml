@@ -112,6 +112,11 @@
                             <Image Source="Iconos/almacen64.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
                             <Label  Content="Almacen" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
+                        <!-- boton Configuracion-->
+                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                            <Image Source="Iconos/usuarios.png" MouseLeftButtonUp="Image_MouseLeftButtonUp_1" />
+                            <Label  Content="Usuarios" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
 
                     </StackPanel>
                 </Border>
@@ -123,57 +128,36 @@
                 <Button Content="Log Out" Style="{StaticResource botonLogOut}"></Button>
             </StackPanel>
 
-            <StackPanel Name="panelCaja"  Orientation="Vertical" Width="690" Visibility="Visible">
-
+            <StackPanel Name="panelCaja"  Orientation="Vertical" Width="690" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Name="panelCajaTop">
-                    <!--
-              
-                    <WrapPanel HorizontalAlignment="Center" Name="panelTecladoCaja" Height="300" Margin="0,-50,0,0" Width="186">
-                        <TextBox x:Name="textBoxTeclado" HorizontalAlignment="Left" Height="40" Margin="1,0,0,10" TextWrapping="Wrap" Text="" Width="184" Background="#FF666666" TextAlignment="Center" FontSize="32" IsEnabled="False" BorderThickness="8" BorderBrush="#FF168449" />
-                        <Button x:Name="buttonCaja1" Content="1" Style="{StaticResource botonesCaja}" Click="buttonCaja1_Click"/>
-                        <Button x:Name="buttonCaja2" Content="2" Style="{StaticResource botonesCaja}" Click="buttonCaja2_Click"/>
-                        <Button x:Name="buttonCaja3" Content="3" Style="{StaticResource botonesCaja}" Click="buttonCaja3_Click"/>
-                        <Button x:Name="buttonCaja4" Content="4" Style="{StaticResource botonesCaja}" Click="buttonCaja4_Click"/>
-                        <Button x:Name="buttonCaja5" Content="5" Style="{StaticResource botonesCaja}" Click="buttonCaja5_Click"/>
-                        <Button x:Name="buttonCaja6" Content="6" Style="{StaticResource botonesCaja}" Click="buttonCaja6_Click"/>
-                        <Button x:Name="buttonCaja7" Content="7" Style="{StaticResource botonesCaja}" Click="buttonCaja7_Click"/>
-                        <Button x:Name="buttonCaja8" Content="8" Style="{StaticResource botonesCaja}" Click="buttonCaja8_Click"/>
-                        <Button x:Name="buttonCaja9" Content="9" Style="{StaticResource botonesCaja}" Click="buttonCaja9_Click"/>
-                        <Button x:Name="buttonCajaCancel" Content="C" Style="{StaticResource botonesCaja}" Click="buttonCajaCancel_Click"/>
-                        <Button x:Name="buttonCaja0" Content="0" Style="{StaticResource botonesCaja}" Click="buttonCaja0_Click"/>
-                        <Button x:Name="buttonCajaOk" Content=">" Style="{StaticResource botonesCaja}" Click="buttonCajaOk_Click"/>
-                    </WrapPanel>
-                 
-                    -->
                     <StackPanel Name="panelCajaDerecha" Orientation="Vertical">
-
-                        <WrapPanel Name="panelProductos" Width="690" >
-                        </WrapPanel>
+                        <WrapPanel Name="panelProductos" Width="690" />
                         <StackPanel Orientation="Horizontal">
                             <Button Name="buttonNuevoTicket" Content="Nuevo Ticket" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonNuevoTicket_Click"></Button>
                             <Button Name="buttonconfirmarTicket" Content="Confirmar" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonconfirmarTicket_Click" />
-
                         </StackPanel>
                     </StackPanel>
                 </StackPanel >
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" >
                     <DataGrid Name="listaTicket" Width="690"/>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Precio total: "/>
                         <Label Name="labelPrecioTotal"/>
                     </StackPanel>
                 </StackPanel>
-                <!-- 
-                    <Image Name="imagenCocacola" Source="Iconos\Productos\cocacola.jpg" Width="100" Height="100"></Image>
-                    <Image Name="imagenCocacolaL" Source="Iconos\Productos\cocacolaL.jpg" Width="100" Height="100"></Image>
-                    <Image Name="imagenCocacolaL0" Source="Iconos\Productos\cocacola0.jpg" Width="100" Height="100"></Image>
-                    <Image Name="imagenKasN" Source="Iconos\Productos\kasN.jpg" Width="100" Height="100"></Image>
-                    <Image Name="imagenKasL" Source="Iconos\Productos\kasL.jpg" Width="100" Height="100"></Image>
-                    -->
             </StackPanel>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer  Name="scrollAlmacen" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
                 <StackPanel Name="panelAlmacen" Width="690" Orientation="Vertical" Visibility="Visible" />
             </ScrollViewer>
+            <StackPanel Name="panelUsuarios" Width="690" Orientation="Vertical">
+                <StackPanel >
+                    <Button Name="crearUsuario" Content="Añadir usuario" Style="{StaticResource botonLogOut}"></Button>
+                </StackPanel>
+                <StackPanel Name="panelListaUsuarios" Orientation="Vertical">
+
+                </StackPanel>
+            </StackPanel>
+
         </DockPanel >
     </Grid>
 </Window>
