@@ -39,6 +39,7 @@ namespace Proyecto_TPV
         const int COD_ACTUALIZAR_TICKET_CAJA = 4;
         const int COD_PANEL_ALMACEN = 5;
         const int COD_PANEL_CONFIG = 6;
+        const int COD_PANEL_USUARIOS = 7;
 
         public MainWindow()
         {
@@ -247,10 +248,12 @@ namespace Proyecto_TPV
                     scrollAlmacen.Visibility = Visibility.Visible;
                     añadirArticulosAlmacen();
                     break;
-                case COD_PANEL_CONFIG:
+                case COD_PANEL_USUARIOS:
                     panelUsuarios.Visibility = Visibility.Visible;
                     añadirlistaUsuarios();
-
+                    break;
+                case COD_PANEL_CONFIG:
+                    panelConfig.Visibility = Visibility.Visible;
                     break;
                 default:
                     break;
@@ -360,20 +363,6 @@ namespace Proyecto_TPV
         {
             articulos = udt.RepositorioArticulo.Get().ToList();
             updateIU(COD_PANEL_CAJA);
-
-            //foreach (Articulo item in articulos)
-            //{
-            //    Image tmpImagen = new Image();
-            //    BitmapImage src = new BitmapImage();
-            //    src.BeginInit();
-            //    src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
-            //    src.EndInit();
-            //    tmpImagen.Source = src;
-            //    tmpImagen.Stretch = Stretch.Uniform;
-            //    tmpImagen.Width = 100;
-            //    tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloCaja(item); };
-            //    this.panelProductos.Children.Add(tmpImagen);
-            //}
         }
 
 
@@ -432,7 +421,12 @@ namespace Proyecto_TPV
 
         }
 
-        private void Image_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        private void Usuarios_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            updateIU(COD_PANEL_USUARIOS);
+        }
+
+        private void Config_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             updateIU(COD_PANEL_CONFIG);
         }

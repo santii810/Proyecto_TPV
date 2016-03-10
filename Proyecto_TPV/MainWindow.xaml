@@ -99,24 +99,30 @@
         <!--#endregion-->
         <DockPanel Name="panelPrincipal"  HorizontalAlignment="Left"  VerticalAlignment="Top" Visibility="Visible" Margin="0,0,0,0">
             <!--#region Panel botones-->
-            <WrapPanel DockPanel.Dock="Left" Name="menuBar" Background="Bisque"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="100">
-                <Border BorderBrush="Black" BorderThickness="5">
+            <WrapPanel DockPanel.Dock="Left" Name="menuBar" Background="Bisque" Margin="0,30,10,0"  HorizontalAlignment="Left" Width="90">
+                <Border BorderBrush="Black" BorderThickness="5" >
                     <StackPanel Orientation="Vertical" Name="botonesMenuBar">
                         <!-- boton caja-->
-                        <StackPanel  Width="80"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5">
+                        <StackPanel  Width="70"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5">
                             <Image Source="Iconos/caja64.png" MouseLeftButtonUp="Caja_MouseLeftButtonUp"></Image>
                             <Label  Content="Caja" MouseLeftButtonUp="Caja_MouseLeftButtonUp" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
                         <!-- boton almacen-->
-                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
                             <Image Source="Iconos/almacen64.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
                             <Label  Content="Almacen" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
-                        <!-- boton Configuracion-->
-                        <StackPanel  Width="80" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
-                            <Image Source="Iconos/usuarios.png" MouseLeftButtonUp="Image_MouseLeftButtonUp_1" />
+                        <!-- boton Usuarios-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                            <Image Source="Iconos/usuarios.png" MouseLeftButtonUp="Usuarios_MouseLeftButtonUp" />
                             <Label  Content="Usuarios" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
+                        <!-- boton Configuracion-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                            <Image Source="Iconos/config.png" MouseLeftButtonUp="Config_MouseLeftButtonUp"  />
+                            <Label  Content="Config" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+
 
                     </StackPanel>
                 </Border>
@@ -146,10 +152,12 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+
             <ScrollViewer  Name="scrollAlmacen" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
                 <StackPanel Name="panelAlmacen" Width="690" Orientation="Vertical" Visibility="Visible" />
             </ScrollViewer>
-            <StackPanel Name="panelUsuarios" Width="690" Orientation="Vertical">
+
+            <StackPanel Name="panelUsuarios" Width="690" Orientation="Vertical" Visibility="Collapsed">
                 <StackPanel >
                     <Button Name="crearUsuario" Content="Añadir usuario" Style="{StaticResource botonLogOut}"></Button>
                 </StackPanel>
@@ -157,7 +165,37 @@
 
                 </StackPanel>
             </StackPanel>
-
+            <DockPanel Name="panelConfig" Width="690">
+                <Border BorderBrush="Black" BorderThickness="5"  Width="90" HorizontalAlignment="Left" DockPanel.Dock="Left">
+                    <StackPanel Orientation="Vertical" Name="botonesMenuBar2" Width="80" HorizontalAlignment="Center" Background="Bisque">
+                        <!-- boton caja-->
+                        <StackPanel  Width="70"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Image Source="Iconos/caja64.png" MouseLeftButtonUp="Caja_MouseLeftButtonUp"></Image>
+                            <Label  Content="Proveed" MouseLeftButtonUp="Caja_MouseLeftButtonUp" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                        <!-- boton almacen-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Image Source="Iconos/almacen64.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
+                            <Label  Content="Pedidos" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                        <!-- boton Usuarios-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Image Source="Iconos/usuarios.png" MouseLeftButtonUp="Usuarios_MouseLeftButtonUp" />
+                            <Label  Content="Articulos" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                        <!-- boton Configuracion-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <Image Source="Iconos/config.png" MouseLeftButtonUp="Config_MouseLeftButtonUp"  />
+                            <Label  Content="Ventas" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                        <!-- boton Configuracion-->
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Image Source="Iconos/config.png" MouseLeftButtonUp="Config_MouseLeftButtonUp" />
+                            <Label  Content="Sesiones" Style="{StaticResource textoNegrita}"  />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </DockPanel >
         </DockPanel >
     </Grid>
 </Window>

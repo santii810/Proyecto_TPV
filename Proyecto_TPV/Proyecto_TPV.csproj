@@ -72,13 +72,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Migrations\201603040956395_TPV01.cs" />
-    <Compile Include="Migrations\201603040956395_TPV01.Designer.cs">
-      <DependentUpon>201603040956395_TPV01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603041013145_TPV02.cs" />
-    <Compile Include="Migrations\201603041013145_TPV02.Designer.cs">
-      <DependentUpon>201603041013145_TPV02.cs</DependentUpon>
+    <Compile Include="Migrations\201603101206225_TPV01.cs" />
+    <Compile Include="Migrations\201603101206225_TPV01.Designer.cs">
+      <DependentUpon>201603101206225_TPV01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\Context.cs" />
@@ -119,11 +115,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201603040956395_TPV01.resx">
-      <DependentUpon>201603040956395_TPV01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603041013145_TPV02.resx">
-      <DependentUpon>201603041013145_TPV02.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603101206225_TPV01.resx">
+      <DependentUpon>201603101206225_TPV01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -177,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Iconos\usuarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\config.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

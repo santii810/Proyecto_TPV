@@ -53,7 +53,6 @@ C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Pr
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.csproj.GenerateResource.Cache
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.exe
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.pdb
-C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
-C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.csprojResolveAssemblyReference.cache
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
