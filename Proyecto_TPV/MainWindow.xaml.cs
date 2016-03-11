@@ -30,6 +30,7 @@ namespace Proyecto_TPV
 
         TicketVenta tmpTicket = new TicketVenta();
         private Sesion sesionActual;
+        Articulo ArticuloCambiar;
 
 
         string strCodigo = "";
@@ -40,6 +41,14 @@ namespace Proyecto_TPV
         const int COD_PANEL_ALMACEN = 5;
         const int COD_PANEL_CONFIG = 6;
         const int COD_PANEL_USUARIOS = 7;
+        const int COD_NUEVO_PRECIO = 8;
+        const int COD_ADD_ARTICULO = 9;
+
+
+
+
+
+
 
         public MainWindow()
         {
@@ -66,6 +75,7 @@ namespace Proyecto_TPV
             }
             if (autenticado)
             {
+                labelNombreUsuario.Content = usuario.NombreUsuario;
                 sesionActual = new Sesion
                 {
                     InicioSesion = DateTime.Now,
@@ -77,16 +87,7 @@ namespace Proyecto_TPV
             return autenticado;
         }
 
-        /// <summary>
-        /// Borra el articulo.
-        /// </summary>
-        /// <param name="item">articulo a borrar</param>
-        private void borrarArticulo(Articulo item)
-        {
-            //throw new NotImplementedException();
-        }
 
-        #region Metodos privados de diseño
 
 
         /// <summary>
@@ -95,9 +96,16 @@ namespace Proyecto_TPV
         private void añadirArticulosAlmacen()
         {
             panelAlmacen.Children.Clear();
+            Button tmpAddUsuario = new Button();
+            tmpAddUsuario.Content = "Añadir articulo";
+            tmpAddUsuario.Style = FindResource("botonLogOut") as Style;
+            tmpAddUsuario.Click += delegate { añadirArticulo_Click(); };
+
+
+            this.panelAlmacen.Children.Add(tmpAddUsuario);
+
             foreach (Articulo item in articulos)
             {
-
                 StackPanel tmpPanel = new StackPanel();
                 tmpPanel.Orientation = Orientation.Horizontal;
                 tmpPanel.Height = 50;
@@ -131,18 +139,20 @@ namespace Proyecto_TPV
                 tmpLabelStock.Width = 30;
                 tmpPanel.Children.Add(tmpLabelStock);
 
-                //boton borrar
-                Button tmpButton = new Button();
-                tmpButton.Content = "Borrar";
-                tmpButton.Click += delegate { borrarArticulo(item); };
-                tmpButton.Style = FindResource("botonLogOut") as Style;
-                tmpPanel.Children.Add(tmpButton);
+                //boton modificar
+                Button tmpButtonModificar = new Button();
+                tmpButtonModificar.Content = "Modificar";
+                tmpButtonModificar.Click += delegate { ButtonModificarArticulo_Click(item); };
+                tmpButtonModificar.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButtonModificar);
 
-               
+
 
                 this.panelAlmacen.Children.Add(tmpPanel);
             }
         }
+
+
 
 
         /// <summary>
@@ -150,7 +160,7 @@ namespace Proyecto_TPV
         /// </summary>
         private void añadirArticulosCaja()
         {
-           panelProductos.Children.Clear();
+            panelProductos.Children.Clear();
 
 
             foreach (Articulo item in articulos)
@@ -167,13 +177,14 @@ namespace Proyecto_TPV
                 this.panelProductos.Children.Add(tmpImagen);
             }
         }
+
         private void añadirlistaUsuarios()
         {
             panelListaUsuarios.Children.Clear();
 
             foreach (Usuario item in udt.RepositorioUsuario.Get().ToList())
             {
-                
+
                 StackPanel tmpPanel = new StackPanel();
                 tmpPanel.Orientation = Orientation.Horizontal;
                 tmpPanel.Height = 50;
@@ -203,7 +214,7 @@ namespace Proyecto_TPV
                 //tmpButton.Click += delegate { borrarArticulo(item); };
                 //tmpButton.Style = FindResource("botonLogOut") as Style;
                 //tmpPanel.Children.Add(tmpButton);
-                
+
                 this.panelListaUsuarios.Children.Add(tmpPanel);
             }
         }
@@ -221,6 +232,7 @@ namespace Proyecto_TPV
             panelCaja.Visibility = Visibility.Collapsed;
             scrollAlmacen.Visibility = Visibility.Collapsed;
             panelUsuarios.Visibility = Visibility.Collapsed;
+            panelNuevoPrecio.Visibility = Visibility.Collapsed;
 
 
 
@@ -246,6 +258,7 @@ namespace Proyecto_TPV
                     break;
                 case COD_PANEL_ALMACEN:
                     scrollAlmacen.Visibility = Visibility.Visible;
+                    panelAlmacen.Visibility = Visibility.Visible;
                     añadirArticulosAlmacen();
                     break;
                 case COD_PANEL_USUARIOS:
@@ -255,14 +268,18 @@ namespace Proyecto_TPV
                 case COD_PANEL_CONFIG:
                     panelConfig.Visibility = Visibility.Visible;
                     break;
+                case COD_NUEVO_PRECIO:
+                    panelNuevoPrecio.Visibility = Visibility.Visible;
+                    scrollAlmacen.Visibility = Visibility.Visible;
+                    panelAlmacen.Visibility = Visibility.Visible;
+                    break;
+                case COD_ADD_ARTICULO:
+                    
+                    break;
                 default:
                     break;
             }
         }
-
-
-        #endregion
-
 
 
         #endregion
@@ -429,6 +446,55 @@ namespace Proyecto_TPV
         private void Config_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             updateIU(COD_PANEL_CONFIG);
+        }
+
+        private void añadirArticulo_Click()
+        {
+            updateIU(COD_ADD_ARTICULO);
+
+        }
+
+
+
+
+        private void ButtonModificarArticulo_Click(Articulo item)
+        {
+            updateIU(COD_NUEVO_PRECIO);
+            ArticuloCambiar = item;
+        }
+
+        private void buttonAceptarNuevoPrecio_Click(object sender, RoutedEventArgs e)
+        {
+            double nuevoPrecio = ArticuloCambiar.PrecioArticulo;
+            try
+            {
+                nuevoPrecio = Convert.ToDouble(textBoxNuevoPrecio.Text);
+            }
+            catch
+            {
+                MessageBox.Show("El precio no es valido");
+            }
+            ArticuloCambiar.PrecioArticulo = nuevoPrecio;
+            udt.RepositorioArticulo.Update(ArticuloCambiar.ArticuloId, ArticuloCambiar);
+            updateIU(COD_PANEL_ALMACEN);
+        }
+
+        private void buttonNuevoArticulo_Click(object sender, RoutedEventArgs e)
+        {
+            Articulo tmp = new Articulo();
+            tmp.NombreArticulo = textBoxNombreArticulo.Text;
+            try
+            {
+                tmp.PrecioArticulo = Convert.ToDouble(textBoxPrecioArticulo.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Precio incorrecto");
+            }
+
+            udt.RepositorioArticulo.Insert(tmp);
+            udt.Save();
+            updateIU(COD_PANEL_CAJA);
         }
     }
     #endregion

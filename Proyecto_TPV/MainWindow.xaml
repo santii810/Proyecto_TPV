@@ -5,78 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_TPV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" ResizeMode="NoResize">
+        Title="TPV" Height="600" Width="800" ResizeMode="NoResize">
 
-
-    <Window.Resources>
-        <!--#region  Estilo botones logIn-->
-        <Style x:Key="botoneslogIn" TargetType="{x:Type Button}" >
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="Background">
-                <Setter.Value>
-
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="1"/>
-                        <GradientStop Color="#FF1EB464"/>
-                        <GradientStop Color="#FF168449" Offset="0.846"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region estilo botones caja-->
-        <Style x:Key="botonesCaja" TargetType="{x:Type Button}" >
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Margin" Value="1"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="1"/>
-                        <GradientStop Color="#FFE4C4" Offset="0.846"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region  estilo boton logout-->
-        <Style x:Key="botonLogOut" TargetType="{x:Type Button}">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="Background" Value="Bisque"/>
-            <Setter Property="Border.CornerRadius" Value="1"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
-
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region estilo textos-->
-        <Style x:Key="textoNegrita" TargetType="{x:Type Label}">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-        </Style>
-        <!--#endregion-->
-
-    </Window.Resources>
 
 
     <Grid>
@@ -97,7 +27,7 @@
             <Button x:Name="buttonAutenticadoOk" Content=">" Style="{StaticResource botoneslogIn}" Click="buttonAutenticadoOk_Click"/>
         </WrapPanel>
         <!--#endregion-->
-        <DockPanel Name="panelPrincipal"  HorizontalAlignment="Left"  VerticalAlignment="Top" Visibility="Visible" Margin="0,0,0,0">
+        <DockPanel Name="panelPrincipal"  HorizontalAlignment="Left"  VerticalAlignment="Top" Visibility="Visible" Margin="0,0,0,0" Width="730">
             <!--#region Panel botones-->
             <WrapPanel DockPanel.Dock="Left" Name="menuBar" Background="Bisque" Margin="0,30,10,0"  HorizontalAlignment="Left" Width="90">
                 <Border BorderBrush="Black" BorderThickness="5" >
@@ -152,9 +82,17 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
+            
+            <StackPanel  Name="panelNuevoPrecio" DockPanel.Dock="Top" Orientation="Horizontal" Visibility="Collapsed">
+                <Label Content="Nuevo precio" Style="{StaticResource textoNegrita}"/>
+                <TextBox     Name="textBoxNuevoPrecio" Width="100"/>
+                <Button Name="buttonAceptarNuevoPrecio" Content="Aceptar" Style="{StaticResource botonLogOut}" Click="buttonAceptarNuevoPrecio_Click"/>
+            </StackPanel>
 
             <ScrollViewer  Name="scrollAlmacen" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
-                <StackPanel Name="panelAlmacen" Width="690" Orientation="Vertical" Visibility="Visible" />
+                <StackPanel Name="panelAlmacen" Width="490" Orientation="Vertical" Visibility="Visible" >
+
+                </StackPanel>
             </ScrollViewer>
 
             <StackPanel Name="panelUsuarios" Width="690" Orientation="Vertical" Visibility="Collapsed">
@@ -165,37 +103,61 @@
 
                 </StackPanel>
             </StackPanel>
-            <DockPanel Name="panelConfig" Width="690">
+            
+            <DockPanel Name="panelConfig" Width="690" Visibility="Collapsed">
                 <Border BorderBrush="Black" BorderThickness="5"  Width="90" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <StackPanel Orientation="Vertical" Name="botonesMenuBar2" Width="80" HorizontalAlignment="Center" Background="Bisque">
                         <!-- boton caja-->
-                        <StackPanel  Width="70"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                            <Image Source="Iconos/caja64.png" MouseLeftButtonUp="Caja_MouseLeftButtonUp"></Image>
+                        <StackPanel  Width="70"  Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,0,5,5" >
+                            <Image Source="Iconos/Proveedor.png" MouseLeftButtonUp="Caja_MouseLeftButtonUp"></Image>
                             <Label  Content="Proveed" MouseLeftButtonUp="Caja_MouseLeftButtonUp" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
                         <!-- boton almacen-->
-                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                            <Image Source="Iconos/almacen64.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="5,15,5,5">
+                            <Image Source="Iconos/pedidos.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
                             <Label  Content="Pedidos" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
-                        <!-- boton Usuarios-->
-                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                            <Image Source="Iconos/usuarios.png" MouseLeftButtonUp="Usuarios_MouseLeftButtonUp" />
-                            <Label  Content="Articulos" Style="{StaticResource textoNegrita}"  />
-                        </StackPanel>
                         <!-- boton Configuracion-->
-                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                            <Image Source="Iconos/config.png" MouseLeftButtonUp="Config_MouseLeftButtonUp"  />
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,15,5,5">
+                            <Image Source="Iconos/venta.png" MouseLeftButtonUp="Config_MouseLeftButtonUp"  />
                             <Label  Content="Ventas" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
                         <!-- boton Configuracion-->
-                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                            <Image Source="Iconos/config.png" MouseLeftButtonUp="Config_MouseLeftButtonUp" />
+                        <StackPanel  Width="70" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="5,15,5,5">
+                            <Image Source="Iconos/sesion.png" MouseLeftButtonUp="Config_MouseLeftButtonUp" />
                             <Label  Content="Sesiones" Style="{StaticResource textoNegrita}"  />
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                <StackPanel Name="panelProveed">
+
+                </StackPanel>
+                <StackPanel Name="panelPedidos">
+
+                </StackPanel>
+                <StackPanel Name="panelVentas">
+
+                </StackPanel>
+                <StackPanel Name="panelSesiones">
+
+                </StackPanel>
             </DockPanel >
+
+            <StackPanel Name="panelAddArticulo" Visibility="Visible" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Nombre" Width="100"/>
+                    <TextBox Name="textBoxNombreArticulo" Width="100"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Precio" Width="100"/>
+                    <TextBox Name="textBoxPrecioArticulo" Width="100"/>
+                </StackPanel>
+                <Button Content="Añadir" Margin="0" Width="200" Click="buttonNuevoArticulo_Click" Style="{StaticResource botonLogOut}"/>
+            </StackPanel>
+            
+            
+            
+            
         </DockPanel >
     </Grid>
 </Window>

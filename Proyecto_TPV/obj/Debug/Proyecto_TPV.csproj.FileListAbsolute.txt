@@ -56,3 +56,7 @@ C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.pd
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.csprojResolveAssemblyReference.cache
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
 C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\VentanaSecundaria.g.cs
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\App.baml
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Dictionary.baml
+C:\Users\dam209\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\VentanaSecundaria.baml

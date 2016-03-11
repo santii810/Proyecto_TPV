@@ -64,6 +64,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="VentanaSecundaria.xaml.cs">
+      <DependentUpon>VentanaSecundaria.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +89,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="VentanaSecundaria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositorios\RepositorioSesion.cs" />
@@ -173,6 +184,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Iconos\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\pedidos.png" />
+    <Resource Include="Iconos\Proveedor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\proveedor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\sesion.png" />
+    <Resource Include="Iconos\venta.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
