@@ -13,7 +13,7 @@ namespace Proyecto_TPV.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603101206225_TPV01"; }
+            get { return "201603121526161_TPV01"; }
         }
         
         string IMigrationMetadata.Source

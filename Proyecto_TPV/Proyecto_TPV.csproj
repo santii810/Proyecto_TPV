@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201603121526161_TPV01.cs" />
+    <Compile Include="Migrations\201603121526161_TPV01.Designer.cs">
+      <DependentUpon>201603121526161_TPV01.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaSecundaria.xaml.cs">
       <DependentUpon>VentanaSecundaria.xaml</DependentUpon>
     </Compile>
@@ -78,10 +82,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Migrations\201603101206225_TPV01.cs" />
-    <Compile Include="Migrations\201603101206225_TPV01.Designer.cs">
-      <DependentUpon>201603101206225_TPV01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositorios\Context.cs" />
@@ -126,8 +126,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201603101206225_TPV01.resx">
-      <DependentUpon>201603101206225_TPV01.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603121526161_TPV01.resx">
+      <DependentUpon>201603121526161_TPV01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -34,8 +34,7 @@ namespace Proyecto_TPV
 
 
         string strCodigo = "";
-        const int COD_AUTENTICADO_OK = 1;
-        const int COD_ESTADO_INICIAL = 2;
+        const int COD_AUTENTICADO_OK = 1;const int COD_ESTADO_INICIAL = 2;
         const int COD_PANEL_CAJA = 3;
         const int COD_ACTUALIZAR_TICKET_CAJA = 4;
         const int COD_PANEL_ALMACEN = 5;
@@ -43,12 +42,8 @@ namespace Proyecto_TPV
         const int COD_PANEL_USUARIOS = 7;
         const int COD_NUEVO_PRECIO = 8;
         const int COD_ADD_ARTICULO = 9;
-
-
-
-
-
-
+        const int COD_PANEL_ADD_USUARIO=10;
+        const int COD_PANEL_MOD_PASS = 11;
 
         public MainWindow()
         {
@@ -233,7 +228,8 @@ namespace Proyecto_TPV
             scrollAlmacen.Visibility = Visibility.Collapsed;
             panelUsuarios.Visibility = Visibility.Collapsed;
             panelNuevoPrecio.Visibility = Visibility.Collapsed;
-
+            panelAddArticulo.Visibility = Visibility.Collapsed;
+            panelAddUsuario.Visibility = Visibility.Collapsed;
 
 
             switch (codCambio)
@@ -274,7 +270,13 @@ namespace Proyecto_TPV
                     panelAlmacen.Visibility = Visibility.Visible;
                     break;
                 case COD_ADD_ARTICULO:
-                    
+                    panelAddArticulo.Visibility = Visibility.Visible;
+                                        scrollAlmacen.Visibility = Visibility.Visible;
+                    panelAlmacen.Visibility = Visibility.Visible;
+                    break;
+                case COD_PANEL_ADD_USUARIO:
+                    panelAddUsuario.Visibility = Visibility.Visible;
+
                     break;
                 default:
                     break;
@@ -494,8 +496,34 @@ namespace Proyecto_TPV
 
             udt.RepositorioArticulo.Insert(tmp);
             udt.Save();
-            updateIU(COD_PANEL_CAJA);
+            articulos = udt.RepositorioArticulo.Get().ToList();
+            updateIU(COD_PANEL_ALMACEN);
         }
+
+        private void crearUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            updateIU(COD_PANEL_ADD_USUARIO);
+        }
+
+        private void buttonNuevoUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            Usuario tmpUsuario = new Usuario
+            {
+                NombreUsuario = textBoxNombreUsuario.Text,
+                ApellidosUsuario = textBoxApellidosUsuario.Text,
+                NickUsuario = textBoxNickUsuario.Text,
+                password = textBoxPassUsuario.Password
+            };
+            udt.RepositorioUsuario.Insert(tmpUsuario);
+            udt.Save();
+            updateIU(COD_PANEL_USUARIOS);
+        }
+
+        private void cambiarContraseña_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
     #endregion
 }
