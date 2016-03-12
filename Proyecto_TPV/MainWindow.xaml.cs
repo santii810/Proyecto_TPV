@@ -313,6 +313,8 @@ namespace Proyecto_TPV
         }
         private void verDetallesPedidos()
         {
+            panelDetallesPedido.Children.Clear();
+
             foreach (LineaPedido item in udt.RepositorioLineaPedido.Get().ToList())
             {
                 if (item.PedidoId == detallesPedido.PedidoId)
@@ -329,7 +331,7 @@ namespace Proyecto_TPV
 
                     // cantidad
                     Label tmpLabelCantidad = new Label();
-                    tmpLabelCantidad.Content = item.cantidad.ToString(  );
+                    tmpLabelCantidad.Content = item.cantidad.ToString();
                     tmpLabelCantidad.Width = 100;
                     tmpPanel.Children.Add(tmpLabelCantidad);
 
@@ -339,23 +341,67 @@ namespace Proyecto_TPV
                     tmpLabelPrecio.Width = 150;
                     tmpPanel.Children.Add(tmpLabelPrecio);
 
-                   
-                    this.panelPedidos.Children.Add(tmpPanel);
+
+                    this.panelDetallesPedido.Children.Add(tmpPanel);
                 }
             }
         }
 
 
 
-        private void nuevoPedido_Click()
+
+
+        private void añadirListaVentas()
+        {
+            foreach (TicketVenta item in udt.RepositorioTicketVenta.Get().ToList())
+            {
+
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                // fecha
+                Label tmpLabelNombre = new Label();
+                tmpLabelNombre.Content = "IdTicket: " + item.TicketVentaId;
+                tmpLabelNombre.Width = 100;
+                tmpPanel.Children.Add(tmpLabelNombre);
+
+
+                // fecha
+                Label tmpLabelSesion = new Label();
+                tmpLabelSesion.Content = "IdSesion: " + item.SesionId;
+                tmpLabelSesion.Width = 100;
+                tmpPanel.Children.Add(tmpLabelSesion);
+
+                // fecha
+                //Label tmpLabelNombre = new Label();
+                //tmpLabelNombre.Content = item.FechaPedido.ToString();
+                //tmpLabelNombre.Width = 100;
+                //tmpPanel.Children.Add(tmpLabelNombre);
+
+
+                //boton detalles
+                Button tmpButtonDetalles = new Button();
+                tmpButtonDetalles.Content = "Detalles";
+                tmpButtonDetalles.Click += delegate { ButtonDetallesVenta_Click(item); };
+                tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButtonDetalles);
+
+
+                this.panelPedidos.Children.Add(tmpPanel);
+
+
+
+
+
+
+            }
+        }
+        private void ButtonDetallesVenta_Click(TicketVenta item)
         {
             throw new NotImplementedException();
         }
 
-        private void añadirListaVentas()
-        {
-            throw new NotImplementedException();
-        }
         private void añadirListaSesiones()
         {
             throw new NotImplementedException();
@@ -452,7 +498,7 @@ namespace Proyecto_TPV
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaSesiones();
                     break;
-                    
+
                 case COD_NUEVO_PROVEED:
                     panelNuevoProveed.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
@@ -462,8 +508,9 @@ namespace Proyecto_TPV
                     panelConfig.Visibility = Visibility.Visible;
                     verDetallesPedidos();
                     break;
-                    
+
                 default:
+                    MessageBox.Show("Codigo de actualizacion desconocido: " + codCambio.ToString());
                     break;
             }
         }
@@ -765,6 +812,11 @@ namespace Proyecto_TPV
         {
             detallesPedido = item;
             updateIU(COD_DETALLES_PEDIDO);
+        }
+
+        private void nuevoPedido_Click()
+        {
+            updateIU(COD_NUEVO_PEDIDO);
         }
 
     }
