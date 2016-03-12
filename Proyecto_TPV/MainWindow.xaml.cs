@@ -55,6 +55,7 @@ namespace Proyecto_TPV
         const int COD_DETALLES_VENTA = 19;
         const int COD_DETALLES_SESION = 20;
         private Pedido detallesPedido;
+        private TicketVenta detallesVenta;
 
         public MainWindow()
         {
@@ -347,10 +348,7 @@ namespace Proyecto_TPV
             }
         }
 
-
-
-
-
+        
         private void añadirListaVentas()
         {
             panelVentas.Children.Clear();
@@ -405,19 +403,19 @@ namespace Proyecto_TPV
 
                 // usuario
                 Label tmpLabelUsuario = new Label();
-                tmpLabelUsuario.Content = "IdTicket: " + item.Usuario.NickUsuario;
+                tmpLabelUsuario.Content = item.Usuario.NickUsuario;
                 tmpLabelUsuario.Width = 100;
                 tmpPanel.Children.Add(tmpLabelUsuario);
 
                 // inicio sesion
                 Label tmpLabelInicioSesion = new Label();
-                tmpLabelInicioSesion.Content = "IdSesion: " + item.InicioSesion;
+                tmpLabelInicioSesion.Content =  item.InicioSesion;
                 tmpLabelInicioSesion.Width = 100;
                 tmpPanel.Children.Add(tmpLabelInicioSesion);
 
                 // inicio sesion
                 Label tmpLabelFinSesion = new Label();
-                tmpLabelFinSesion.Content = "IdSesion: " + item.FinSesion;
+                tmpLabelFinSesion.Content =  item.FinSesion;
                 tmpLabelFinSesion.Width = 100;
                 tmpPanel.Children.Add(tmpLabelFinSesion);
 
@@ -432,15 +430,49 @@ namespace Proyecto_TPV
                 this.panelSesiones.Children.Add(tmpPanel);
             }
         }
+
+
+        private void verDetallesVenta()
+        {
+            panelDetallesVenta.Children.Clear();
+
+            foreach (LineaTicket item in udt.RepositorioLineaTicket.Get().ToList())
+            {
+                if (item.TicketVentaId == detallesVenta.TicketVentaId)
+                {
+                    StackPanel tmpPanel = new StackPanel();
+                    tmpPanel.Orientation = Orientation.Horizontal;
+                    tmpPanel.Height = 50;
+
+                    // articulo
+                    Label tmpLabelArticulo = new Label();
+                    tmpLabelArticulo.Content = item.Articulo.NombreArticulo;
+                    tmpLabelArticulo.Width = 100;
+                    tmpPanel.Children.Add(tmpLabelArticulo);
+
+                    // cantidad
+                    Label tmpLabelCantidad = new Label();
+                    tmpLabelCantidad.Content = item.cantidad.ToString();
+                    tmpLabelCantidad.Width = 100;
+                    tmpPanel.Children.Add(tmpLabelCantidad);
+
+                    //precio
+                    Label tmpLabelPrecio = new Label();
+                    tmpLabelPrecio.Content = item.precioArticulo.ToString();
+                    tmpLabelPrecio.Width = 150;
+                    tmpPanel.Children.Add(tmpLabelPrecio);
+
+
+                    this.panelDetallesVenta.Children.Add(tmpPanel);
+                }
+
+            }
+        }
         private void ButtonDetallesSesion_Click(Sesion item)
         {
             throw new NotImplementedException();
         }
 
-        private void ButtonDetallesVenta_Click(TicketVenta item)
-        {
-            throw new NotImplementedException();
-        }
 
 
         /// <summary>
@@ -465,7 +497,7 @@ namespace Proyecto_TPV
             panelSesiones.Visibility = Visibility.Collapsed;
             panelVentas.Visibility = Visibility.Collapsed;
             panelDetallesPedido.Visibility = Visibility.Collapsed;
-
+            panelDetallesVenta.Visibility = Visibility.Collapsed;
             switch (codCambio)
             {
                 case COD_ESTADO_INICIAL:
@@ -544,12 +576,18 @@ namespace Proyecto_TPV
                     panelConfig.Visibility = Visibility.Visible;
                     verDetallesPedidos();
                     break;
+                case COD_DETALLES_VENTA:
+                    panelDetallesVenta.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    verDetallesVenta();
+                    break;
 
                 default:
                     MessageBox.Show("Codigo de actualizacion desconocido: " + codCambio.ToString());
                     break;
             }
         }
+
 
 
 
@@ -853,6 +891,11 @@ namespace Proyecto_TPV
         private void nuevoPedido_Click()
         {
             updateIU(COD_NUEVO_PEDIDO);
+        }
+        private void ButtonDetallesVenta_Click(TicketVenta item)
+        {
+            detallesVenta = item;
+            updateIU(COD_DETALLES_VENTA);
         }
 
     }

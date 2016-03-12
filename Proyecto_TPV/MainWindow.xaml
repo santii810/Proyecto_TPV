@@ -136,6 +136,7 @@
                 <StackPanel Name="panelVentas" Orientation="Vertical" />
                 <StackPanel Name="panelSesiones" Orientation="Vertical"/>
                 <StackPanel Name="panelDetallesPedido" Orientation="Vertical"/>
+                <StackPanel Name="panelDetallesVenta" Orientation="Vertical"/>
 
 
 
