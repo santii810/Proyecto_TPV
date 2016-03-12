@@ -353,6 +353,8 @@ namespace Proyecto_TPV
 
         private void añadirListaVentas()
         {
+            panelVentas.Children.Clear();
+
             foreach (TicketVenta item in udt.RepositorioTicketVenta.Get().ToList())
             {
 
@@ -360,14 +362,13 @@ namespace Proyecto_TPV
                 tmpPanel.Orientation = Orientation.Horizontal;
                 tmpPanel.Height = 50;
 
-                // fecha
+                // ticket
                 Label tmpLabelNombre = new Label();
                 tmpLabelNombre.Content = "IdTicket: " + item.TicketVentaId;
                 tmpLabelNombre.Width = 100;
                 tmpPanel.Children.Add(tmpLabelNombre);
 
-
-                // fecha
+                // sesion
                 Label tmpLabelSesion = new Label();
                 tmpLabelSesion.Content = "IdSesion: " + item.SesionId;
                 tmpLabelSesion.Width = 100;
@@ -387,25 +388,60 @@ namespace Proyecto_TPV
                 tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
                 tmpPanel.Children.Add(tmpButtonDetalles);
 
-
-                this.panelPedidos.Children.Add(tmpPanel);
-
-
-
-
-
+                this.panelVentas.Children.Add(tmpPanel);
 
             }
         }
+        private void añadirListaSesiones()
+        {
+            panelSesiones.Children.Clear();
+
+            foreach (Sesion item in udt.RepositorioSesion.Get().ToList())
+            {
+
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                // usuario
+                Label tmpLabelUsuario = new Label();
+                tmpLabelUsuario.Content = "IdTicket: " + item.Usuario.NickUsuario;
+                tmpLabelUsuario.Width = 100;
+                tmpPanel.Children.Add(tmpLabelUsuario);
+
+                // inicio sesion
+                Label tmpLabelInicioSesion = new Label();
+                tmpLabelInicioSesion.Content = "IdSesion: " + item.InicioSesion;
+                tmpLabelInicioSesion.Width = 100;
+                tmpPanel.Children.Add(tmpLabelInicioSesion);
+
+                // inicio sesion
+                Label tmpLabelFinSesion = new Label();
+                tmpLabelFinSesion.Content = "IdSesion: " + item.FinSesion;
+                tmpLabelFinSesion.Width = 100;
+                tmpPanel.Children.Add(tmpLabelFinSesion);
+
+
+                //boton detalles
+                Button tmpButtonDetalles = new Button();
+                tmpButtonDetalles.Content = "Detalles";
+                tmpButtonDetalles.Click += delegate { ButtonDetallesSesion_Click(item); };
+                tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButtonDetalles);
+
+                this.panelSesiones.Children.Add(tmpPanel);
+            }
+        }
+        private void ButtonDetallesSesion_Click(Sesion item)
+        {
+            throw new NotImplementedException();
+        }
+
         private void ButtonDetallesVenta_Click(TicketVenta item)
         {
             throw new NotImplementedException();
         }
 
-        private void añadirListaSesiones()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Actualiza la inferfaz de usuario segun un codigo.
