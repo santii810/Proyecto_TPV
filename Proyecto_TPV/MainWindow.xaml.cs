@@ -34,7 +34,8 @@ namespace Proyecto_TPV
 
 
         string strCodigo = "";
-        const int COD_AUTENTICADO_OK = 1;const int COD_ESTADO_INICIAL = 2;
+        const int COD_AUTENTICADO_OK = 1;
+        const int COD_ESTADO_INICIAL = 2;
         const int COD_PANEL_CAJA = 3;
         const int COD_ACTUALIZAR_TICKET_CAJA = 4;
         const int COD_PANEL_ALMACEN = 5;
@@ -44,6 +45,15 @@ namespace Proyecto_TPV
         const int COD_ADD_ARTICULO = 9;
         const int COD_PANEL_ADD_USUARIO=10;
         const int COD_PANEL_MOD_PASS = 11;
+        const int COD_PANEL_PROVEED = 12;
+        const int COD_PANEL_PEDIDOS = 13;
+        const int COD_PANEL_VENTAS = 14;
+        const int COD_PANEL_SESIONES = 15;
+        const int COD_NUEVO_PROVEED = 16;
+        const int COD_NUEVO_PEDIDO = 17;
+        const int COD_DETALLES_PEDIDO = 18;
+        const int COD_DETALLES_VENTA = 19;
+        const int COD_DETALLES_SESION = 20;
 
         public MainWindow()
         {
@@ -91,6 +101,7 @@ namespace Proyecto_TPV
         private void añadirArticulosAlmacen()
         {
             panelAlmacen.Children.Clear();
+
             Button tmpAddUsuario = new Button();
             tmpAddUsuario.Content = "Añadir articulo";
             tmpAddUsuario.Style = FindResource("botonLogOut") as Style;
@@ -146,10 +157,7 @@ namespace Proyecto_TPV
                 this.panelAlmacen.Children.Add(tmpPanel);
             }
         }
-
-
-
-
+        
         /// <summary>
         /// Carga dinamicamente la vista del panel de caja
         /// </summary>
@@ -173,7 +181,10 @@ namespace Proyecto_TPV
             }
         }
 
-        private void añadirlistaUsuarios()
+        /// <summary>
+        /// carga dinamicamente la lista de usuarios.
+        /// </summary>
+        private void añadirListaUsuarios()
         {
             panelListaUsuarios.Children.Clear();
 
@@ -214,6 +225,49 @@ namespace Proyecto_TPV
             }
         }
 
+        private void añadirListaProveed()
+        {
+            panelProveed.Children.Clear();
+
+            Button tmpAddProvedd = new Button();
+            tmpAddProvedd.Content = "Añadir proveedor";
+            tmpAddProvedd.Style = FindResource("botonLogOut") as Style;
+            tmpAddProvedd.Click += delegate { addProveed_Click(); };
+            this.panelProveed.Children.Add(tmpAddProvedd);
+
+
+            foreach (Proveedor item in udt.RepositorioProveedor.Get().ToList())
+            {
+
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                // nombre
+                Label tmpLabelNombre = new Label();
+                tmpLabelNombre.Content = item.NombreProveedor;
+                tmpLabelNombre.Width = 100;
+                tmpPanel.Children.Add(tmpLabelNombre);
+
+                //relefono
+                Label tmpLabelTelefono = new Label();
+                tmpLabelTelefono.Content = item.TelefonoProveedor;
+                tmpLabelTelefono.Width = 150;
+                tmpPanel.Children.Add(tmpLabelTelefono);
+
+                //email
+                Label tmpLabelEmail = new Label();
+                tmpLabelEmail.Content = item.EmailProveedor;
+                tmpLabelEmail.Width = 150;
+                tmpPanel.Children.Add(tmpLabelEmail);
+
+
+                this.panelProveed.Children.Add(tmpPanel);
+            }
+        }
+
+ 
+
 
 
         /// <summary>
@@ -230,6 +284,10 @@ namespace Proyecto_TPV
             panelNuevoPrecio.Visibility = Visibility.Collapsed;
             panelAddArticulo.Visibility = Visibility.Collapsed;
             panelAddUsuario.Visibility = Visibility.Collapsed;
+            panelUpdatePass.Visibility = Visibility.Collapsed;
+            panelProveed.Visibility = Visibility.Collapsed;
+            panelConfig.Visibility = Visibility.Collapsed;
+            panelAddProveed.Visibility = Visibility.Collapsed;
 
 
             switch (codCambio)
@@ -259,7 +317,7 @@ namespace Proyecto_TPV
                     break;
                 case COD_PANEL_USUARIOS:
                     panelUsuarios.Visibility = Visibility.Visible;
-                    añadirlistaUsuarios();
+                    añadirListaUsuarios();
                     break;
                 case COD_PANEL_CONFIG:
                     panelConfig.Visibility = Visibility.Visible;
@@ -276,12 +334,26 @@ namespace Proyecto_TPV
                     break;
                 case COD_PANEL_ADD_USUARIO:
                     panelAddUsuario.Visibility = Visibility.Visible;
+                    break;
+                case COD_PANEL_MOD_PASS:
+                    panelUpdatePass.Visibility = Visibility.Visible;
+                    break;
+                case COD_PANEL_PROVEED:
+                    panelProveed.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    añadirListaProveed();                        
 
                     break;
+                case COD_NUEVO_PROVEED:
+                    panelAddProveed.Visibility = Visibility.Visible;
+                    break;
+
+
                 default:
                     break;
             }
         }
+
 
 
         #endregion
@@ -450,6 +522,28 @@ namespace Proyecto_TPV
             updateIU(COD_PANEL_CONFIG);
         }
 
+        private void Proveed_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            updateIU(COD_PANEL_PROVEED);
+        }
+
+        private void Pedidos_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Ventas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Sesiones_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+
+
         private void añadirArticulo_Click()
         {
             updateIU(COD_ADD_ARTICULO);
@@ -521,9 +615,33 @@ namespace Proyecto_TPV
 
         private void cambiarContraseña_Click(object sender, RoutedEventArgs e)
         {
-
+            updateIU(COD_PANEL_MOD_PASS);
         }
 
+        private void buttonNuevaPass_Click(object sender, RoutedEventArgs e)
+        {
+            this.usuario.password = textBoxNuevaPass.Password;
+            udt.RepositorioUsuario.Update(this.usuario.UsuarioId, this.usuario);
+            udt.Save();
+            updateIU(COD_PANEL_USUARIOS);
+        }
+        private void addProveed_Click()
+        {
+            updateIU(COD_NUEVO_PROVEED);
+        }
+
+        private void buttonNuevoProveed_Click(object sender, RoutedEventArgs e)
+        {
+            Proveedor tmpProveedor = new Proveedor()
+            {
+                NombreProveedor = textBoxNombreProveed.Text,
+                TelefonoProveedor = textBoxTelefonoProveed.Text,
+                EmailProveedor = textBoxEmailProov.Text
+            };
+            udt.RepositorioProveedor.Insert(tmpProveedor);
+            udt.Save();
+            updateIU(COD_PANEL_PROVEED);
+        }
     }
     #endregion
 }
