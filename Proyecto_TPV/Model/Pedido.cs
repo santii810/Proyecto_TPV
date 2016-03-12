@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Proyecto_TPV.Model.DB
 {
@@ -17,6 +18,9 @@ namespace Proyecto_TPV.Model.DB
         public virtual int ProveedorId { get; set; }
         public virtual Proveedor Proveedor { get; set; }
 
-
+        public static implicit operator StackPanel(Pedido v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

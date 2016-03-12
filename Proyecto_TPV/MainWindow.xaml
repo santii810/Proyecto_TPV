@@ -131,18 +131,38 @@
                 </Border>
                 
                         <!--#endregion-->
-                <StackPanel Name="panelProveed" Orientation="Vertical">
+                <StackPanel Name="panelProveed" Orientation="Vertical"/>
+                <StackPanel Name="panelPedidos" Orientation="Vertical"/>
+                <StackPanel Name="panelVentas" Orientation="Vertical" />
+                <StackPanel Name="panelSesiones" Orientation="Vertical"/>
+                <StackPanel Name="panelDetallesPedido" Orientation="Vertical"/>
 
-                </StackPanel>
-                <StackPanel Name="panelPedidos">
 
-                </StackPanel>
-                <StackPanel Name="panelVentas">
 
-                </StackPanel>
-                <StackPanel Name="panelSesiones" Visibility="Collapsed">
 
+                <!--#region paneles secundarios-->
+                <StackPanel Name="panelNuevoProveed" Visibility="Visible" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0" >
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Nombre" Width="100"/>
+                        <TextBox Name="textBoxNombreProveed" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Telefono" Width="100"/>
+                        <TextBox Name="textBoxTelefonoProveed" Width="100"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Email" Width="100"/>
+                        <TextBox Name="textBoxEmailProov" Width="100"/>
+                    </StackPanel>
+
+                    <Button Content="Añadir" Margin="0" Width="200" Click="buttonNuevoProveed_Click" HorizontalAlignment="Left" Style="{StaticResource botonLogOut}"/>
                 </StackPanel>
+
+                <!--#endregion-->
+                
             </DockPanel >
 
             <StackPanel Name="panelAddArticulo" Visibility="Collapsed" Orientation="Vertical" Margin="0,50,0,0" >
@@ -193,25 +213,6 @@
                 
                 <Button Content="Añadir" Margin="0" Width="250" Click="buttonNuevaPass_Click" HorizontalAlignment="Left" Style="{StaticResource botonLogOut}"/>
 
-            </StackPanel>
-            <StackPanel Name="panelAddProveed" Visibility="Visible" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0" >
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Nombre" Width="100"/>
-                    <TextBox Name="textBoxNombreProveed" Width="100"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Telefono" Width="100"/>
-                    <TextBox Name="textBoxTelefonoProveed" Width="100"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Email" Width="100"/>
-                    <TextBox Name="textBoxEmailProov" Width="100"/>
-                </StackPanel>
-
-                <Button Content="Añadir" Margin="0" Width="200" Click="buttonNuevoProveed_Click" HorizontalAlignment="Left" Style="{StaticResource botonLogOut}"/>
             </StackPanel>
 
 

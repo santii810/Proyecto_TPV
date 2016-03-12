@@ -43,7 +43,7 @@ namespace Proyecto_TPV
         const int COD_PANEL_USUARIOS = 7;
         const int COD_NUEVO_PRECIO = 8;
         const int COD_ADD_ARTICULO = 9;
-        const int COD_PANEL_ADD_USUARIO=10;
+        const int COD_PANEL_ADD_USUARIO = 10;
         const int COD_PANEL_MOD_PASS = 11;
         const int COD_PANEL_PROVEED = 12;
         const int COD_PANEL_PEDIDOS = 13;
@@ -54,6 +54,7 @@ namespace Proyecto_TPV
         const int COD_DETALLES_PEDIDO = 18;
         const int COD_DETALLES_VENTA = 19;
         const int COD_DETALLES_SESION = 20;
+        private Pedido detallesPedido;
 
         public MainWindow()
         {
@@ -157,7 +158,7 @@ namespace Proyecto_TPV
                 this.panelAlmacen.Children.Add(tmpPanel);
             }
         }
-        
+
         /// <summary>
         /// Carga dinamicamente la vista del panel de caja
         /// </summary>
@@ -266,9 +267,99 @@ namespace Proyecto_TPV
             }
         }
 
- 
+
+        private void añadirListaPedidos()
+        {
+            panelPedidos.Children.Clear();
+
+            Button tmpAddProvedd = new Button();
+            tmpAddProvedd.Content = "Nuevo pedido";
+            tmpAddProvedd.Style = FindResource("botonLogOut") as Style;
+            tmpAddProvedd.Click += delegate { nuevoPedido_Click(); };
+            this.panelPedidos.Children.Add(tmpAddProvedd);
 
 
+            foreach (Pedido item in udt.RepositorioPedido.Get().ToList())
+            {
+
+                StackPanel tmpPanel = new StackPanel();
+                tmpPanel.Orientation = Orientation.Horizontal;
+                tmpPanel.Height = 50;
+
+                // fecha
+                Label tmpLabelNombre = new Label();
+                tmpLabelNombre.Content = item.FechaPedido.ToString();
+                tmpLabelNombre.Width = 100;
+                tmpPanel.Children.Add(tmpLabelNombre);
+
+                //proveedor
+                Label tmpLabelTelefono = new Label();
+                tmpLabelTelefono.Content = item.Proveedor.NombreProveedor;
+                tmpLabelTelefono.Width = 150;
+                tmpPanel.Children.Add(tmpLabelTelefono);
+
+
+
+                //boton detalles
+                Button tmpButtonDetalles = new Button();
+                tmpButtonDetalles.Content = "Detalles";
+                tmpButtonDetalles.Click += delegate { ButtonDetallesPedido_Click(item); };
+                tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButtonDetalles);
+
+
+                this.panelPedidos.Children.Add(tmpPanel);
+            }
+        }
+        private void verDetallesPedidos()
+        {
+            foreach (LineaPedido item in udt.RepositorioLineaPedido.Get().ToList())
+            {
+                if (item.PedidoId == detallesPedido.PedidoId)
+                {
+                    StackPanel tmpPanel = new StackPanel();
+                    tmpPanel.Orientation = Orientation.Horizontal;
+                    tmpPanel.Height = 50;
+
+                    // articulo
+                    Label tmpLabelArticulo = new Label();
+                    tmpLabelArticulo.Content = item.Articulo.NombreArticulo;
+                    tmpLabelArticulo.Width = 100;
+                    tmpPanel.Children.Add(tmpLabelArticulo);
+
+                    // cantidad
+                    Label tmpLabelCantidad = new Label();
+                    tmpLabelCantidad.Content = item.cantidad.ToString(  );
+                    tmpLabelCantidad.Width = 100;
+                    tmpPanel.Children.Add(tmpLabelCantidad);
+
+                    //precio
+                    Label tmpLabelPrecio = new Label();
+                    tmpLabelPrecio.Content = item.precioArticulo.ToString();
+                    tmpLabelPrecio.Width = 150;
+                    tmpPanel.Children.Add(tmpLabelPrecio);
+
+                   
+                    this.panelPedidos.Children.Add(tmpPanel);
+                }
+            }
+        }
+
+
+
+        private void nuevoPedido_Click()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void añadirListaVentas()
+        {
+            throw new NotImplementedException();
+        }
+        private void añadirListaSesiones()
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Actualiza la inferfaz de usuario segun un codigo.
@@ -287,8 +378,11 @@ namespace Proyecto_TPV
             panelUpdatePass.Visibility = Visibility.Collapsed;
             panelProveed.Visibility = Visibility.Collapsed;
             panelConfig.Visibility = Visibility.Collapsed;
-            panelAddProveed.Visibility = Visibility.Collapsed;
-
+            panelNuevoProveed.Visibility = Visibility.Collapsed;
+            panelPedidos.Visibility = Visibility.Collapsed;
+            panelSesiones.Visibility = Visibility.Collapsed;
+            panelVentas.Visibility = Visibility.Collapsed;
+            panelDetallesPedido.Visibility = Visibility.Collapsed;
 
             switch (codCambio)
             {
@@ -329,7 +423,7 @@ namespace Proyecto_TPV
                     break;
                 case COD_ADD_ARTICULO:
                     panelAddArticulo.Visibility = Visibility.Visible;
-                                        scrollAlmacen.Visibility = Visibility.Visible;
+                    scrollAlmacen.Visibility = Visibility.Visible;
                     panelAlmacen.Visibility = Visibility.Visible;
                     break;
                 case COD_PANEL_ADD_USUARIO:
@@ -341,18 +435,41 @@ namespace Proyecto_TPV
                 case COD_PANEL_PROVEED:
                     panelProveed.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
-                    añadirListaProveed();                        
-
+                    añadirListaProveed();
                     break;
+                case COD_PANEL_PEDIDOS:
+                    panelPedidos.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    añadirListaPedidos();
+                    break;
+                case COD_PANEL_VENTAS:
+                    panelVentas.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    añadirListaVentas();
+                    break;
+                case COD_PANEL_SESIONES:
+                    panelSesiones.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    añadirListaSesiones();
+                    break;
+                    
                 case COD_NUEVO_PROVEED:
-                    panelAddProveed.Visibility = Visibility.Visible;
+                    panelNuevoProveed.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
                     break;
-
-
+                case COD_DETALLES_PEDIDO:
+                    panelDetallesPedido.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    verDetallesPedidos();
+                    break;
+                    
                 default:
                     break;
             }
         }
+
+
+
 
 
 
@@ -529,17 +646,17 @@ namespace Proyecto_TPV
 
         private void Pedidos_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            updateIU(COD_PANEL_PEDIDOS);
         }
 
         private void Ventas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            updateIU(COD_PANEL_VENTAS);
         }
 
         private void Sesiones_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            updateIU(COD_PANEL_SESIONES);
         }
 
 
@@ -642,6 +759,14 @@ namespace Proyecto_TPV
             udt.Save();
             updateIU(COD_PANEL_PROVEED);
         }
+
+
+        private void ButtonDetallesPedido_Click(Pedido item)
+        {
+            detallesPedido = item;
+            updateIU(COD_DETALLES_PEDIDO);
+        }
+
     }
     #endregion
 }
