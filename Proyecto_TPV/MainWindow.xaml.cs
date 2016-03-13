@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,8 +55,14 @@ namespace Proyecto_TPV
         const int COD_DETALLES_PEDIDO = 18;
         const int COD_DETALLES_VENTA = 19;
         const int COD_DETALLES_SESION = 20;
+        const int COD_ACTUALIZAR_TICKET_PEDIDO = 22;
+
+
         private Pedido detallesPedido;
         private TicketVenta detallesVenta;
+        private Proveedor detallesProveedor;
+        private Pedido tmpCompra = new Pedido();
+
 
         public MainWindow()
         {
@@ -93,7 +100,7 @@ namespace Proyecto_TPV
             }
             return autenticado;
         }
-
+       
         /// <summary>
         /// Carga dinamicamente la vista de los articulos en el almacen
         /// </summary>
@@ -109,7 +116,7 @@ namespace Proyecto_TPV
 
             this.panelAlmacen.Children.Add(tmpAddUsuario);
 
-            foreach (Articulo item in articulos)
+            foreach (Articulo item in udt.RepositorioArticulo.Get().ToList())
             {
                 StackPanel tmpPanel = new StackPanel();
                 tmpPanel.Orientation = Orientation.Horizontal;
@@ -156,7 +163,6 @@ namespace Proyecto_TPV
                 this.panelAlmacen.Children.Add(tmpPanel);
             }
         }
-
         /// <summary>
         /// Carga dinamicamente la vista del panel de caja
         /// </summary>
@@ -165,7 +171,7 @@ namespace Proyecto_TPV
             panelProductos.Children.Clear();
 
 
-            foreach (Articulo item in articulos)
+            foreach (Articulo item in udt.RepositorioArticulo.Get().ToList())
             {
                 Image tmpImagen = new Image();
                 BitmapImage src = new BitmapImage();
@@ -179,7 +185,6 @@ namespace Proyecto_TPV
                 this.panelProductos.Children.Add(tmpImagen);
             }
         }
-
         /// <summary>
         /// carga dinamicamente la lista de usuarios.
         /// </summary>
@@ -223,7 +228,6 @@ namespace Proyecto_TPV
                 this.panelListaUsuarios.Children.Add(tmpPanel);
             }
         }
-
         private void añadirListaProveed()
         {
             panelProveed.Children.Clear();
@@ -260,12 +264,18 @@ namespace Proyecto_TPV
                 tmpLabelEmail.Width = 150;
                 tmpPanel.Children.Add(tmpLabelEmail);
 
+                //boton detalles
+                Button tmpButtonDetalles = new Button();
+                tmpButtonDetalles.Content = "Hacer pedido";
+                tmpButtonDetalles.Click += delegate { ButtonNuevoPedidoProveedor_Click(item); };
+                tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
+                tmpPanel.Children.Add(tmpButtonDetalles);
+
+
 
                 this.panelProveed.Children.Add(tmpPanel);
             }
         }
-
-
         private void añadirListaPedidos()
         {
             panelPedidos.Children.Clear();
@@ -344,8 +354,6 @@ namespace Proyecto_TPV
                 }
             }
         }
-
-        
         private void añadirListaVentas()
         {
             panelVentas.Children.Clear();
@@ -406,13 +414,13 @@ namespace Proyecto_TPV
 
                 // inicio sesion
                 Label tmpLabelInicioSesion = new Label();
-                tmpLabelInicioSesion.Content =  item.InicioSesion;
+                tmpLabelInicioSesion.Content = item.InicioSesion;
                 tmpLabelInicioSesion.Width = 100;
                 tmpPanel.Children.Add(tmpLabelInicioSesion);
 
                 // inicio sesion
                 Label tmpLabelFinSesion = new Label();
-                tmpLabelFinSesion.Content =  item.FinSesion;
+                tmpLabelFinSesion.Content = item.FinSesion;
                 tmpLabelFinSesion.Width = 100;
                 tmpPanel.Children.Add(tmpLabelFinSesion);
 
@@ -420,14 +428,13 @@ namespace Proyecto_TPV
                 //boton detalles
                 Button tmpButtonDetalles = new Button();
                 tmpButtonDetalles.Content = "Detalles";
-                tmpButtonDetalles.Click += delegate { ButtonDetallesSesion_Click(item); };
+                //   tmpButtonDetalles.Click += delegate { ButtonDetallesSesion_Click(item); };
                 tmpButtonDetalles.Style = FindResource("botonLogOut") as Style;
                 tmpPanel.Children.Add(tmpButtonDetalles);
 
                 this.panelSesiones.Children.Add(tmpPanel);
             }
         }
-
         private void verDetallesVenta()
         {
             panelDetallesVenta.Children.Clear();
@@ -464,10 +471,26 @@ namespace Proyecto_TPV
 
             }
         }
-        private void ButtonDetallesSesion_Click(Sesion item)
+        private void añadirArticulosAPedido()
         {
-            throw new NotImplementedException();
+            panelProductosPedido.Children.Clear();
+
+
+            foreach (Articulo item in udt.RepositorioArticulo.Get().ToList())
+            {
+                Image tmpImagen = new Image();
+                BitmapImage src = new BitmapImage();
+                src.BeginInit();
+                src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                src.EndInit();
+                tmpImagen.Source = src;
+                tmpImagen.Stretch = Stretch.Uniform;
+                tmpImagen.Width = 100;
+                tmpImagen.MouseLeftButtonUp += delegate { pulsarArticuloPedido(item); };
+                this.panelProductosPedido.Children.Add(tmpImagen);
+            }
         }
+
 
 
 
@@ -494,6 +517,7 @@ namespace Proyecto_TPV
             panelVentas.Visibility = Visibility.Collapsed;
             panelDetallesPedido.Visibility = Visibility.Collapsed;
             panelDetallesVenta.Visibility = Visibility.Collapsed;
+            panelNuevoPedido.Visibility = Visibility.Collapsed;
 
 
             switch (codCambio)
@@ -578,12 +602,23 @@ namespace Proyecto_TPV
                     panelConfig.Visibility = Visibility.Visible;
                     verDetallesVenta();
                     break;
-
+                case COD_NUEVO_PEDIDO:
+                    panelNuevoPedido.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    añadirArticulosAPedido();
+                    break;
+                case COD_ACTUALIZAR_TICKET_PEDIDO:
+                    panelNuevoPedido.Visibility = Visibility.Visible;
+                    panelConfig.Visibility = Visibility.Visible;
+                    listaPedido.ItemsSource = tmpCompra.LineasPedido.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad, i.precioArticulo, i.precioLinea });
+                    labelPrecioTotalPedido.Content = tmpCompra.precioTicket.ToString();
+                    break;
                 default:
                     MessageBox.Show("Codigo de actualizacion desconocido: " + codCambio.ToString());
                     break;
             }
         }
+
 
 
 
@@ -714,6 +749,26 @@ namespace Proyecto_TPV
             updateIU(COD_ACTUALIZAR_TICKET_CAJA);
         }
 
+        private void pulsarArticuloPedido(Articulo item)
+        {
+
+            if (tmpCompra.LineasPedido.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault() == null)
+            {
+                LineaPedido tmpLineaPedido = new LineaPedido
+                {
+                    ArticuloId = item.ArticuloId,
+                    cantidad = 1,
+                    precioArticulo = item.PrecioArticulo
+                };
+                tmpCompra.LineasPedido.Add(tmpLineaPedido);
+            }
+            else
+            {
+                tmpCompra.LineasPedido.Where(i => i.ArticuloId == item.ArticuloId).FirstOrDefault().cantidad++;
+            }
+
+            updateIU(COD_ACTUALIZAR_TICKET_PEDIDO);
+        }
 
         private void buttonNuevoTicket_Click(object sender, RoutedEventArgs e)
         {
@@ -868,17 +923,58 @@ namespace Proyecto_TPV
 
         private void buttonNuevoProveed_Click(object sender, RoutedEventArgs e)
         {
-            Proveedor tmpProveedor = new Proveedor()
+            bool telefono = false, email = false;
+           // pruebo telefono
+            try
             {
-                NombreProveedor = textBoxNombreProveed.Text,
-                TelefonoProveedor = textBoxTelefonoProveed.Text,
-                EmailProveedor = textBoxEmailProov.Text
-            };
-            udt.RepositorioProveedor.Insert(tmpProveedor);
-            udt.Save();
-            updateIU(COD_PANEL_PROVEED);
-        }
+                int numTelefono = Convert.ToInt32(textBoxTelefonoProveed.Text);
+                if (numTelefono >= 100000000 && numTelefono < 1000000000)
+                {
+                    telefono = true;
+                }
+                else
+                {
+                    MessageBox.Show("Telefono incorrecto");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Telefono incorrecto");
+            }
 
+            ////email
+            //string[] strEmail = textBoxEmailProov.Text.Split('@');
+            //if (strEmail.Length > 1)
+            //{
+            //    email = true;
+            //}
+            if (RegexUtilities.IsValidEmail(textBoxEmailProov.Text))
+            {
+                email = true;
+            }
+            else
+            {
+                MessageBox.Show("Email incorrecto");
+            }
+            
+
+            if (telefono && email)
+            {
+
+
+                Proveedor tmpProveedor = new Proveedor()
+                {
+                    NombreProveedor = textBoxNombreProveed.Text,
+                    TelefonoProveedor = textBoxTelefonoProveed.Text,
+                    EmailProveedor = textBoxEmailProov.Text
+                };
+
+                udt.RepositorioProveedor.Insert(tmpProveedor);
+                udt.Save();
+                updateIU(COD_PANEL_PROVEED);
+            }
+
+        }
 
         private void ButtonDetallesPedido_Click(Pedido item)
         {
@@ -888,7 +984,7 @@ namespace Proyecto_TPV
 
         private void nuevoPedido_Click()
         {
-            updateIU(COD_NUEVO_PEDIDO);
+            updateIU(COD_PANEL_PROVEED);
         }
         private void ButtonDetallesVenta_Click(TicketVenta item)
         {
@@ -896,6 +992,56 @@ namespace Proyecto_TPV
             updateIU(COD_DETALLES_VENTA);
         }
 
+        private void ButtonNuevoPedidoProveedor_Click(Proveedor item)
+        {
+            articulos = udt.RepositorioArticulo.Get().ToList();
+            updateIU(COD_NUEVO_PEDIDO);
+            detallesProveedor = item;
+        }
+
+        private void buttonconfirmarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Realizar pedido?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                tmpCompra.FechaPedido = DateTime.Now;
+                tmpCompra.ProveedorId = detallesProveedor.ProveedorId;
+                udt.RepositorioPedido.Insert(tmpCompra);
+                udt.Save();
+                MessageBox.Show("Añadido correctamente");
+                tmpCompra = new Pedido();
+                updateIU(COD_PANEL_PEDIDOS);
+            }
+        }
+
+        private void buttonNuevoPedidoCompra_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Borrar el pedido actual?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                tmpCompra = new Pedido();
+                updateIU(COD_ACTUALIZAR_TICKET_PEDIDO);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //log out
+            cerrarSesion();
+
+        }
+
+        private void cerrarSesion()
+        {
+
+            sesionActual.FinSesion = DateTime.Now;
+            udt.RepositorioSesion.Update(sesionActual);
+            udt.Save();
+
+            strCodigo = "";
+            textBoxCodigo.Text = "";
+            updateIU(COD_ESTADO_INICIAL);
+        }
     }
     #endregion
 }

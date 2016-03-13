@@ -63,3 +63,5 @@ C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\App.baml
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Dictionary.baml
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\VentanaSecundaria.baml
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
+C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
+C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV03.resources

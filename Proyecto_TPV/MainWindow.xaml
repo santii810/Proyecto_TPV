@@ -61,10 +61,10 @@
             <StackPanel Orientation="Horizontal" Name="panelUsuario" Height="30"  DockPanel.Dock="Top" VerticalAlignment="Top">
                 <Label Content="Usuario: " Style="{StaticResource textoNegrita}" />
                 <Label Content="" Name="labelNombreUsuario" Style="{StaticResource textoNegrita}"/>
-                <Button Content="Log Out" Style="{StaticResource botonLogOut}"></Button>
+                <Button Content="Log Out" Style="{StaticResource botonLogOut}" Height="Auto" Click="Button_Click"/>
             </StackPanel>
 
-                        <!--#region paneles principales-->
+            <!--#region paneles principales-->
             <StackPanel Name="panelCaja"  Orientation="Vertical" Width="690" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Name="panelCajaTop">
                     <StackPanel Name="panelCajaDerecha" Orientation="Vertical">
@@ -84,14 +84,14 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel  Name="panelNuevoPrecio" DockPanel.Dock="Top" Orientation="Horizontal" Visibility="Visible">
+            <StackPanel  Name="panelNuevoPrecio" DockPanel.Dock="Top" Orientation="Horizontal" Visibility="Collapsed">
                 <Label Content="Nuevo precio" Style="{StaticResource textoNegrita}"/>
                 <TextBox     Name="textBoxNuevoPrecio" Width="100"/>
                 <Button Name="buttonAceptarNuevoPrecio" Content="Aceptar" Style="{StaticResource botonLogOut}" Click="buttonAceptarNuevoPrecio_Click"/>
             </StackPanel>
 
             <ScrollViewer  Name="scrollAlmacen" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
-                <StackPanel Name="panelAlmacen" Orientation="Vertical" Visibility="Visible" />
+                <StackPanel Name="panelAlmacen" Orientation="Vertical" />
             </ScrollViewer>
 
             <StackPanel Name="panelUsuarios" Width="690" Orientation="Vertical" Visibility="Collapsed">
@@ -104,7 +104,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <DockPanel Name="panelConfig" Width="690" Visibility="Collapsed">
+            <DockPanel Name="panelConfig" Width="690" Visibility="Visible">
                 <Border BorderBrush="Black" BorderThickness="5"  Width="90" HorizontalAlignment="Left" DockPanel.Dock="Left">
                     <StackPanel Orientation="Vertical" Name="botonesMenuBar2" Width="80" HorizontalAlignment="Center" Background="Bisque">
                         <!-- boton proveed-->
@@ -129,20 +129,40 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
-                
-                        <!--#endregion-->
-                <StackPanel Name="panelProveed" Orientation="Vertical"/>
-                <StackPanel Name="panelPedidos" Orientation="Vertical"/>
-                <StackPanel Name="panelVentas" Orientation="Vertical" />
-                <StackPanel Name="panelSesiones" Orientation="Vertical"/>
-                <StackPanel Name="panelDetallesPedido" Orientation="Vertical"/>
-                <StackPanel Name="panelDetallesVenta" Orientation="Vertical"/>
+
+                <!--#endregion-->
+                <StackPanel Name="panelProveed" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelPedidos" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelVentas" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelSesiones" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelDetallesPedido" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelDetallesVenta" Orientation="Vertical" Visibility="Collapsed"/>
+                <StackPanel Name="panelNuevoPedido" Orientation="Vertical"  Width="690" Visibility="Collapsed">
+
+                    <StackPanel Orientation="Horizontal" Name="panelPedidoTop">
+                        <StackPanel Name="panelNuevoPedidoDerecha" Orientation="Vertical">
+                            <WrapPanel Name="panelProductosPedido" Width="590" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="buttonNuevoPedidoVenta" Content="Borrar pedido" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonNuevoPedidoCompra_Click"></Button>
+                                <Button Name="buttonconfirmarPedido" Content="Confirmar" Style="{StaticResource botonLogOut}" Width="100" Height="40" Click="buttonconfirmarPedido_Click" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel >
+                    <StackPanel Orientation="Vertical" >
+                        <DataGrid Name="listaPedido" Width="690"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Precio total: "/>
+                            <Label Name="labelPrecioTotalPedido"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
 
 
 
 
                 <!--#region paneles secundarios-->
-                <StackPanel Name="panelNuevoProveed" Visibility="Visible" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0" >
+                <StackPanel Name="panelNuevoProveed" Visibility="Collapsed" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0" >
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Nombre" Width="100"/>
@@ -163,7 +183,7 @@
                 </StackPanel>
 
                 <!--#endregion-->
-                
+
             </DockPanel >
 
             <StackPanel Name="panelAddArticulo" Visibility="Collapsed" Orientation="Vertical" Margin="0,50,0,0" >
@@ -205,13 +225,13 @@
             </StackPanel>
             <StackPanel Name="panelUpdatePass" Visibility="Collapsed" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,20,0,0" >
 
-  
+
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Nueva Contraseña" Width="125"/>
                     <PasswordBox Name="textBoxNuevaPass" Width="125"/>
                 </StackPanel>
-                
+
                 <Button Content="Añadir" Margin="0" Width="250" Click="buttonNuevaPass_Click" HorizontalAlignment="Left" Style="{StaticResource botonLogOut}"/>
 
             </StackPanel>

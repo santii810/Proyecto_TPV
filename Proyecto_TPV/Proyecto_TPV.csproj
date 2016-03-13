@@ -68,6 +68,15 @@
     <Compile Include="Migrations\201603121526161_TPV01.Designer.cs">
       <DependentUpon>201603121526161_TPV01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603131824116_TPV02.cs" />
+    <Compile Include="Migrations\201603131824116_TPV02.Designer.cs">
+      <DependentUpon>201603131824116_TPV02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603131839417_TPV03.cs" />
+    <Compile Include="Migrations\201603131839417_TPV03.Designer.cs">
+      <DependentUpon>201603131839417_TPV03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegexUtilities.cs" />
     <Compile Include="VentanaSecundaria.xaml.cs">
       <DependentUpon>VentanaSecundaria.xaml</DependentUpon>
     </Compile>
@@ -128,6 +137,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201603121526161_TPV01.resx">
       <DependentUpon>201603121526161_TPV01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603131824116_TPV02.resx">
+      <DependentUpon>201603131824116_TPV02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603131839417_TPV03.resx">
+      <DependentUpon>201603131839417_TPV03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
