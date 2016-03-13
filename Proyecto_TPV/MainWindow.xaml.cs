@@ -2,6 +2,7 @@
 using Proyecto_TPV.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -68,7 +69,13 @@ namespace Proyecto_TPV
         {
             InitializeComponent();
             updateIU(COD_ESTADO_INICIAL);
+            Application.Current.MainWindow.Closing += new CancelEventHandler(MainWindow_Closing);
+        }
 
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if(sesionActual!=null)
+            cerrarSesion();
         }
         #region Metodos privados
         /// <summary>
