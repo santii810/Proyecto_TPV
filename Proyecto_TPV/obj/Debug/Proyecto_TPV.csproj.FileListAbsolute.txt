@@ -65,3 +65,4 @@ C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\VentanaSecundar
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV01.resources
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV02.resources
 C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV03.resources
+C:\Users\sgomez\Repositorios\Proyecto_TPV\Proyecto_TPV\obj\Debug\Proyecto_TPV.Migrations.TPV04.resources

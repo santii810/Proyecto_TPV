@@ -385,10 +385,10 @@ namespace Proyecto_TPV
                 tmpPanel.Children.Add(tmpLabelSesion);
 
                 // fecha
-                //Label tmpLabelNombre = new Label();
-                //tmpLabelNombre.Content = item.FechaPedido.ToString();
-                //tmpLabelNombre.Width = 100;
-                //tmpPanel.Children.Add(tmpLabelNombre);
+                Label tmpFecha = new Label();
+                tmpFecha.Content = item.FechaTicketVenta.ToString();
+                tmpFecha.Width = 150;
+                tmpPanel.Children.Add(tmpFecha);
 
 
                 //boton detalles
@@ -794,6 +794,7 @@ namespace Proyecto_TPV
             if (result == MessageBoxResult.Yes)
             {
                 tmpTicket.SesionId = sesionActual.SesionId;
+                tmpTicket.FechaTicketVenta = DateTime.Now;
                 udt.RepositorioTicketVenta.Insert(tmpTicket);
                 udt.Save();
                 MessageBox.Show("Añadido correctamente");

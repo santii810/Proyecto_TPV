@@ -12,6 +12,7 @@ namespace Proyecto_TPV.Model.DB
     public class TicketVenta
     {
         public int TicketVentaId { get; set; }
+        public DateTime FechaTicketVenta { get; set; }
         public double precioTicket
         {
             get
