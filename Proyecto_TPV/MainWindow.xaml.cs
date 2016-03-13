@@ -338,6 +338,16 @@ namespace Proyecto_TPV
                     tmpPanel.Orientation = Orientation.Horizontal;
                     tmpPanel.Height = 50;
 
+                    Image tmpImagen = new Image();
+                    BitmapImage src = new BitmapImage();
+                    src.BeginInit();
+                    src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                    src.EndInit();
+                    tmpImagen.Source = src;
+                    tmpImagen.Stretch = Stretch.Uniform;
+                    tmpImagen.Width = 40;
+                    tmpPanel.Children.Add(tmpImagen);
+
                     // articulo
                     Label tmpLabelArticulo = new Label();
                     tmpLabelArticulo.Content = item.Articulo.NombreArticulo;
@@ -450,9 +460,25 @@ namespace Proyecto_TPV
             {
                 if (item.TicketVentaId == detallesVenta.TicketVentaId)
                 {
+
+
+
+
                     StackPanel tmpPanel = new StackPanel();
                     tmpPanel.Orientation = Orientation.Horizontal;
                     tmpPanel.Height = 50;
+
+
+
+                    Image tmpImagen = new Image();
+                    BitmapImage src = new BitmapImage();
+                    src.BeginInit();
+                    src.UriSource = new Uri("Iconos/Productos/" + item.ArticuloId + ".jpg", UriKind.Relative);
+                    src.EndInit();
+                    tmpImagen.Source = src;
+                    tmpImagen.Stretch = Stretch.Uniform;
+                    tmpImagen.Width = 40;
+                    tmpPanel.Children.Add(tmpImagen);
 
                     // articulo
                     Label tmpLabelArticulo = new Label();
