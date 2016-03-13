@@ -140,9 +140,15 @@
                 <ScrollViewer  Name="scrollVentas" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
                     <StackPanel Name="panelVentas" Orientation="Vertical" Visibility="Collapsed"/>
                 </ScrollViewer>
-                <StackPanel Name="panelSesiones" Orientation="Vertical" Visibility="Collapsed"/>
+                <ScrollViewer  Name="scrollSesiones" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                    <StackPanel Name="panelSesiones" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
+                <ScrollViewer  Name="scrollDetallesPedido" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
                 <StackPanel Name="panelDetallesPedido" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
+                <ScrollViewer  Name="scrollDetallesVenta" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
                 <StackPanel Name="panelDetallesVenta" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
                 <StackPanel Name="panelNuevoPedido" Orientation="Vertical"  Width="690" Visibility="Collapsed">
 
                     <StackPanel Orientation="Horizontal" Name="panelPedidoTop">

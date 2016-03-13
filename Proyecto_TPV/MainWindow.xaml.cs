@@ -554,8 +554,9 @@ namespace Proyecto_TPV
             scrollProveed.Visibility = Visibility.Collapsed;
             scrollPedidos.Visibility = Visibility.Collapsed;
             scrollVentas.Visibility = Visibility.Collapsed;
-
-
+            scrollDetallesPedido.Visibility = Visibility.Collapsed;
+            scrollDetallesVenta.Visibility = Visibility.Collapsed;
+            scrollSesiones.Visibility = Visibility.Collapsed;
 
             switch (codCambio)
             {
@@ -569,7 +570,6 @@ namespace Proyecto_TPV
                     autenticationPanel.Visibility = Visibility.Collapsed;
                     panelCaja.Visibility = Visibility.Visible;
                     panelPrincipal.Visibility = Visibility.Visible;
-
                     añadirArticulosCaja();
                     break;
                 case COD_ACTUALIZAR_TICKET_CAJA:
@@ -606,26 +606,26 @@ namespace Proyecto_TPV
                     panelUpdatePass.Visibility = Visibility.Visible;
                     break;
                 case COD_PANEL_PROVEED:
-                    scrollProveed.Visibility = Visibility.Collapsed;
+                    scrollProveed.Visibility = Visibility.Visible;
                     panelProveed.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaProveed();
                     break;
                 case COD_PANEL_PEDIDOS:
                     panelPedidos.Visibility = Visibility.Visible;
-                    scrollPedidos.Visibility = Visibility.Collapsed;
-
+                    scrollPedidos.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaPedidos();
                     break;
                 case COD_PANEL_VENTAS:
                     panelVentas.Visibility = Visibility.Visible;
-                    scrollVentas.Visibility = Visibility.Collapsed;
+                    scrollVentas.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaVentas();
                     break;
                 case COD_PANEL_SESIONES:
                     panelSesiones.Visibility = Visibility.Visible;
+                    scrollSesiones.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaSesiones();
                     break;
@@ -635,11 +635,13 @@ namespace Proyecto_TPV
                     break;
                 case COD_DETALLES_PEDIDO:
                     panelDetallesPedido.Visibility = Visibility.Visible;
+                    scrollDetallesPedido.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     verDetallesPedidos();
                     break;
                 case COD_DETALLES_VENTA:
                     panelDetallesVenta.Visibility = Visibility.Visible;
+                    scrollDetallesVenta.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     verDetallesVenta();
                     break;
