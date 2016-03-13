@@ -105,6 +105,7 @@ namespace Proyecto_TPV
                 udt.RepositorioSesion.Insert(sesionActual);
                 udt.Save();
             }
+            MessageBox.Show("Autenticado incorrecto");
             return autenticado;
         }
 
