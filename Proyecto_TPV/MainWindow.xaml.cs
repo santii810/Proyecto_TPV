@@ -94,9 +94,6 @@ namespace Proyecto_TPV
             return autenticado;
         }
 
-
-
-
         /// <summary>
         /// Carga dinamicamente la vista de los articulos en el almacen
         /// </summary>
@@ -431,7 +428,6 @@ namespace Proyecto_TPV
             }
         }
 
-
         private void verDetallesVenta()
         {
             panelDetallesVenta.Children.Clear();
@@ -498,6 +494,8 @@ namespace Proyecto_TPV
             panelVentas.Visibility = Visibility.Collapsed;
             panelDetallesPedido.Visibility = Visibility.Collapsed;
             panelDetallesVenta.Visibility = Visibility.Collapsed;
+
+
             switch (codCambio)
             {
                 case COD_ESTADO_INICIAL:
@@ -566,7 +564,6 @@ namespace Proyecto_TPV
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaSesiones();
                     break;
-
                 case COD_NUEVO_PROVEED:
                     panelNuevoProveed.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
@@ -810,6 +807,7 @@ namespace Proyecto_TPV
             }
             ArticuloCambiar.PrecioArticulo = nuevoPrecio;
             udt.RepositorioArticulo.Update(ArticuloCambiar.ArticuloId, ArticuloCambiar);
+            udt.Save();
             updateIU(COD_PANEL_ALMACEN);
         }
 

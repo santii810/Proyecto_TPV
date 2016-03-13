@@ -84,7 +84,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel  Name="panelNuevoPrecio" DockPanel.Dock="Top" Orientation="Horizontal" Visibility="Collapsed">
+            <StackPanel  Name="panelNuevoPrecio" DockPanel.Dock="Top" Orientation="Horizontal" Visibility="Visible">
                 <Label Content="Nuevo precio" Style="{StaticResource textoNegrita}"/>
                 <TextBox     Name="textBoxNuevoPrecio" Width="100"/>
                 <Button Name="buttonAceptarNuevoPrecio" Content="Aceptar" Style="{StaticResource botonLogOut}" Click="buttonAceptarNuevoPrecio_Click"/>
