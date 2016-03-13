@@ -653,7 +653,7 @@ namespace Proyecto_TPV
                 case COD_ACTUALIZAR_TICKET_PEDIDO:
                     panelNuevoPedido.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
-                    listaPedido.ItemsSource = tmpCompra.LineasPedido.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad, i.precioArticulo, i.precioLinea });
+                    listaPedido.ItemsSource = tmpCompra.LineasPedido.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad});
                     labelPrecioTotalPedido.Content = tmpCompra.precioTicket.ToString();
                     break;
                 default:
