@@ -653,7 +653,7 @@ namespace Proyecto_TPV
                 case COD_ACTUALIZAR_TICKET_PEDIDO:
                     panelNuevoPedido.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
-                    listaPedido.ItemsSource = tmpCompra.LineasPedido.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad});
+                    listaPedido.ItemsSource = tmpCompra.LineasPedido.ToList().Select(i => new {/*i.Articulo.NombreArticulo, */    articulos.Where(j => j.ArticuloId == i.ArticuloId).FirstOrDefault().NombreArticulo, i.cantidad });
                     labelPrecioTotalPedido.Content = tmpCompra.precioTicket.ToString();
                     break;
                 default:
@@ -936,16 +936,35 @@ namespace Proyecto_TPV
 
         private void buttonNuevoUsuario_Click(object sender, RoutedEventArgs e)
         {
-            Usuario tmpUsuario = new Usuario
+
+            try
             {
-                NombreUsuario = textBoxNombreUsuario.Text,
-                ApellidosUsuario = textBoxApellidosUsuario.Text,
-                NickUsuario = textBoxNickUsuario.Text,
-                password = textBoxPassUsuario.Password
-            };
-            udt.RepositorioUsuario.Insert(tmpUsuario);
-            udt.Save();
-            updateIU(COD_PANEL_USUARIOS);
+                int numContraseña = Convert.ToInt32(textBoxPassUsuario.Password);
+                if (numContraseña < 1000 || numContraseña >= 10000)
+                {
+                    MessageBox.Show("Contraseña incorrecta, deben ser solo 4 numeros");
+                }
+
+                else
+                {
+
+                    Usuario tmpUsuario = new Usuario
+                    {
+                        NombreUsuario = textBoxNombreUsuario.Text,
+                        ApellidosUsuario = textBoxApellidosUsuario.Text,
+                        NickUsuario = textBoxNickUsuario.Text,
+                        password = textBoxPassUsuario.Password
+                    };
+                    udt.RepositorioUsuario.Insert(tmpUsuario);
+                    udt.Save();
+                    updateIU(COD_PANEL_USUARIOS);
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Contraseña incorrecta, deben ser solo 4 numeros");
+            }
         }
 
         private void cambiarContraseña_Click(object sender, RoutedEventArgs e)
@@ -955,10 +974,26 @@ namespace Proyecto_TPV
 
         private void buttonNuevaPass_Click(object sender, RoutedEventArgs e)
         {
-            this.usuario.password = textBoxNuevaPass.Password;
-            udt.RepositorioUsuario.Update(this.usuario.UsuarioId, this.usuario);
-            udt.Save();
-            updateIU(COD_PANEL_USUARIOS);
+            try
+            {
+                int numContraseña = Convert.ToInt32(textBoxNuevaPass.Password);
+                if (numContraseña < 1000 || numContraseña >= 10000)
+                {
+                    MessageBox.Show("Contraseña incorrecta, deben ser solo 4 numeros");
+                }
+                else
+                {
+                    this.usuario.password = textBoxNuevaPass.Password;
+                    udt.RepositorioUsuario.Update(this.usuario.UsuarioId, this.usuario);
+                    udt.Save();
+                    updateIU(COD_PANEL_USUARIOS);
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Contraseña incorrecta, deben ser solo 4 numeros");
+            }
         }
         private void addProveed_Click()
         {
