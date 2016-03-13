@@ -131,9 +131,15 @@
                 </Border>
 
                 <!--#endregion-->
-                <StackPanel Name="panelProveed" Orientation="Vertical" Visibility="Collapsed"/>
-                <StackPanel Name="panelPedidos" Orientation="Vertical" Visibility="Collapsed"/>
-                <StackPanel Name="panelVentas" Orientation="Vertical" Visibility="Collapsed"/>
+                <ScrollViewer  Name="scrollProveed" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                    <StackPanel Name="panelProveed" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
+                <ScrollViewer  Name="scrollPedidos" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                    <StackPanel Name="panelPedidos" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
+                <ScrollViewer  Name="scrollVentas" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+                    <StackPanel Name="panelVentas" Orientation="Vertical" Visibility="Collapsed"/>
+                </ScrollViewer>
                 <StackPanel Name="panelSesiones" Orientation="Vertical" Visibility="Collapsed"/>
                 <StackPanel Name="panelDetallesPedido" Orientation="Vertical" Visibility="Collapsed"/>
                 <StackPanel Name="panelDetallesVenta" Orientation="Vertical" Visibility="Collapsed"/>

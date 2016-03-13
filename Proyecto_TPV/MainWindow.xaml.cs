@@ -74,8 +74,8 @@ namespace Proyecto_TPV
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            if(sesionActual!=null)
-            cerrarSesion();
+            if (sesionActual != null)
+                cerrarSesion();
         }
         #region Metodos privados
         /// <summary>
@@ -107,7 +107,7 @@ namespace Proyecto_TPV
             }
             return autenticado;
         }
-       
+
         /// <summary>
         /// Carga dinamicamente la vista de los articulos en el almacen
         /// </summary>
@@ -551,6 +551,10 @@ namespace Proyecto_TPV
             panelDetallesPedido.Visibility = Visibility.Collapsed;
             panelDetallesVenta.Visibility = Visibility.Collapsed;
             panelNuevoPedido.Visibility = Visibility.Collapsed;
+            scrollProveed.Visibility = Visibility.Collapsed;
+            scrollPedidos.Visibility = Visibility.Collapsed;
+            scrollVentas.Visibility = Visibility.Collapsed;
+
 
 
             switch (codCambio)
@@ -602,17 +606,21 @@ namespace Proyecto_TPV
                     panelUpdatePass.Visibility = Visibility.Visible;
                     break;
                 case COD_PANEL_PROVEED:
+                    scrollProveed.Visibility = Visibility.Collapsed;
                     panelProveed.Visibility = Visibility.Visible;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaProveed();
                     break;
                 case COD_PANEL_PEDIDOS:
                     panelPedidos.Visibility = Visibility.Visible;
+                    scrollPedidos.Visibility = Visibility.Collapsed;
+
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaPedidos();
                     break;
                 case COD_PANEL_VENTAS:
                     panelVentas.Visibility = Visibility.Visible;
+                    scrollVentas.Visibility = Visibility.Collapsed;
                     panelConfig.Visibility = Visibility.Visible;
                     añadirListaVentas();
                     break;
@@ -958,7 +966,7 @@ namespace Proyecto_TPV
         private void buttonNuevoProveed_Click(object sender, RoutedEventArgs e)
         {
             bool telefono = false, email = false;
-           // pruebo telefono
+            // pruebo telefono
             try
             {
                 int numTelefono = Convert.ToInt32(textBoxTelefonoProveed.Text);
@@ -990,7 +998,7 @@ namespace Proyecto_TPV
             {
                 MessageBox.Show("Email incorrecto");
             }
-            
+
 
             if (telefono && email)
             {
